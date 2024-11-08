@@ -1,0 +1,26 @@
+# Archivos y carpetas específicas de NetBeans
+nbproject/private/
+**/nbproject/Makefile-*.mk
+**/nbproject/Package-*.bash
+nbproject/configs/
+
+# Carpetas de compilación y distribución
+build/
+nbbuild/
+dist/
+nbdist/
+.nb-gradle/
+
+# Archivos de compilación y de entorno
+*.class
+*.log
+
+# Archivos y carpetas generados por el sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos de configuración específicos del usuario
+*.iml
+*.ipr
+*.iws
+*.swp
