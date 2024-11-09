@@ -9,7 +9,11 @@ public class Conexion {
 
     public Conexion() {
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/bd_prototipo", "root", "");
+            conexion = DriverManager.getConnection(
+                    Config.DRIVER+"://"+Config.URL+":"+Config.PORT+"/"+Config.BDNAME, 
+                    Config.USERNAME,
+                    Config.PASSWORD
+            );
         } catch (SQLException e) {
             e.printStackTrace();
         }

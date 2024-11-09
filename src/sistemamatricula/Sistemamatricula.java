@@ -1,7 +1,7 @@
 
 package sistemamatricula;
 
-import Vista.AccesoForm;
+import Vista.auth.AccesoForm;
 
 
 

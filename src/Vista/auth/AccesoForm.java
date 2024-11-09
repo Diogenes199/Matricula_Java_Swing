@@ -1,6 +1,7 @@
-package Vista;
-import Controlador.AccesoControlador;
-import Modelo.Entidades.Acceso;
+package Vista.auth;
+import Controlador.UsuarioControlador;
+import Modelo.Entidades.Usuario;
+import Vista.MenuForm;
 import javax.swing.JOptionPane;
 
 public class AccesoForm extends javax.swing.JFrame {
@@ -123,22 +124,25 @@ public class AccesoForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private AccesoControlador accesoControlador = new AccesoControlador();
+    private UsuarioControlador accesoControlador = new UsuarioControlador();
+     
     
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         String idadmin = txtusuarios.getText();
         String contra = new String(txtcontra.getPassword());
-        Acceso entidad = new Acceso();
-        entidad.setUsuario(idadmin);
-        entidad.setContra(contra);        
-        boolean authenticated = accesoControlador.isAcceso(entidad);
-        if (authenticated) {
-            JOptionPane.showMessageDialog(null, "Logueado con éxito.");
-            MenuForm menu1 = new MenuForm();
-            menu1.setVisible(true);  
-        } else {
-            JOptionPane.showMessageDialog(null, "ID Admin o contraseña incorrectos.");
-        } 
+        Usuario usuario = new Usuario();
+        usuario.setUsuario(idadmin);
+        usuario.setContra(contra);
+        
+        if(!accesoControlador.isAcceso(usuario)){
+        JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos");   
+            System.out.println(usuario.getUsuario());
+        txtusuarios.requestFocus();
+        }else{
+        
+        MenuForm menu = new MenuForm();
+       menu.setVisible(true);
+       dispose();                }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
   
