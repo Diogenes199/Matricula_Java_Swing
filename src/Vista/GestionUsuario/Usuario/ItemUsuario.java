@@ -363,7 +363,7 @@ private UsuarioTableModel usuarioTableModel ;
         panelUsuario.dataLoad();
         activarBotonesCRUD(false);
         activarBotonesGuardar(false);
-//        tbl_Empleado.clearSelection();
+       tblUsuario.clearSelection();
         panelUsuario.setEditable(false);
         btn_Nuevo.setEnabled(true);
     }//GEN-LAST:event_btn_CancelarActionPerformed
