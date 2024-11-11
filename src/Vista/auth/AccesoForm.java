@@ -135,11 +135,11 @@ public class AccesoForm extends javax.swing.JFrame {
         usuario.setContra(contra);
         
         if(!accesoControlador.isAcceso(usuario)){
-        JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos");   
-            System.out.println(usuario.getUsuario());
+        JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrectos vuelva a ingresar datos ");
+        System.out.println(usuario.getUsuario());
         txtusuarios.requestFocus();
-        }else{
-        
+        }
+        else{
         MenuForm menu = new MenuForm();
        menu.setVisible(true);
        dispose();                }
