@@ -1,7 +1,7 @@
 package Vista.auth;
 import Controlador.UsuarioControlador;
 import Modelo.Entidades.Usuario;
-import Vista.MenuForm;
+import Vista.Menu.MenuForm;
 import javax.swing.JOptionPane;
 
 public class AccesoForm extends javax.swing.JFrame {
