@@ -19,7 +19,7 @@ public class RolTableModel extends AbstractTableModel {
     }
     
     public void finByIds(String id) {
-        getAll= (List<Rol>) controller.getOne(id);
+        getAll= controller.getAll();
     }
 
     public void findByNameAndLastName(String data){

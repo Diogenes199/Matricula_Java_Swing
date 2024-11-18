@@ -21,7 +21,7 @@ public class UsuarioDAO implements IUsuario{
      private String UPDATE = "UPDATE usuarios SET nombre = ? ,apellido_paterno = ?, apellido_materno = ?,dni = ?,usuario = ?, contra = ?, celular1 = ?,celular2 = ?,direccion = ?,id_rol= ? ";
      private String DELETE = "DELETE FROM usuarios ";
      private String GETALL = "SELECT U.id_usuario,U.nombre,U.apellido_paterno, U.apellido_materno,U.dni,U.usuario, U.contra, U.celular1,U.celular2,U.direccion,R.nombre_rol FROM usuarios as U \n" +
-"inner join roles  as r  on U.id_rol = R.id_rol   ";
+"inner join roles  as R  on U.id_rol = R.id_rol   ";
      private String GETONE = " WHERE id_usuario = ?";
      
      private String NEWCOD = "SELECT SUBSTRING(MAX(id_usuario),3) FROM usuarios";
