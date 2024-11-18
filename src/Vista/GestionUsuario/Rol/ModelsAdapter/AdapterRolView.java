@@ -1,4 +1,4 @@
-package Vista.GestionUsuario.Rol;
+package Vista.GestionUsuario.Rol.ModelsAdapter;
 
 import Modelo.Entidades.Rol;
 import java.util.Objects;

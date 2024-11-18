@@ -3,8 +3,8 @@ package Vista.GestionUsuario.Usuario;
 import Controlador.RolControlador;
 import Modelo.Entidades.Rol;
 import Modelo.Entidades.Usuario;
-import Vista.GestionUsuario.Rol.AdapterRolView;
-import Vista.GestionUsuario.Rol.RolComboModel;
+import Vista.GestionUsuario.Rol.ModelsAdapter.AdapterRolView;
+import Vista.GestionUsuario.Rol.ModelsAdapter.RolComboModel;
 import java.util.List;
 
 public class PanelUsuario extends javax.swing.JPanel {

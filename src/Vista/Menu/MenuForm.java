@@ -1,4 +1,5 @@
 package Vista.Menu;
+import Vista.GestionUsuario.Rol.ItemRol;
 import Vista.GestionUsuario.Usuario.ItemUsuario;
 import Vista.Personalizado.ImageDesktop;
 import javax.swing.*;
@@ -199,24 +200,30 @@ public class MenuForm extends JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemUsuarioActionPerformed
-       for (JInternalFrame frame : EscritorioPane.getAllFrames()) {
-        if (frame instanceof ItemUsuario) { 
-            frame.dispose();  
-            break;
-        }
-    }          
-            ItemUsuario item = new ItemUsuario();
-            EscritorioPane.add(item);  
-            EscritorioPane.revalidate(); 
-            EscritorioPane.repaint();  
-            int x = (EscritorioPane.getWidth() - item.getWidth()) / 2;
-            int y = (EscritorioPane.getHeight() - item.getHeight()) / 2;
-            item.setLocation(x, y); 
-            item.setVisible(true);   
+      Viewinstance(new ItemUsuario());
     }//GEN-LAST:event_itemUsuarioActionPerformed
 
+    private void  Viewinstance(JInternalFrame internal){
+    for (JInternalFrame existingFrame : EscritorioPane.getAllFrames()) {
+        if (existingFrame.getClass().equals(internal.getClass())) {
+            existingFrame.dispose();
+            break;
+        }
+    }
+
+    EscritorioPane.add(internal);
+    EscritorioPane.revalidate();
+    EscritorioPane.repaint();
+
+    int x = (EscritorioPane.getWidth() - internal.getWidth()) / 2;
+    int y = (EscritorioPane.getHeight() - internal.getHeight()) / 2;
+    internal.setLocation(x, y);
+
+    internal.setVisible(true);
+    }
+    
     private void itemRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRolActionPerformed
-        
+        Viewinstance(new ItemRol());
     }//GEN-LAST:event_itemRolActionPerformed
 
     private void itemModalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemModalidadActionPerformed

@@ -12,12 +12,24 @@ public class RolService {
         return dao.findAll();
     }
     
-    public void save(Rol rol){
-        dao.create(rol);
+    public List<Rol> getNames(String role){
+        return dao.findNames(role);
     }
     
-    public void update(Rol rol){
+    public boolean save(Rol rol){
+        boolean message = false;      
+        if(!rol.getId().trim().isEmpty() && !rol.getRol().trim().isEmpty() ){
+        dao.create(rol);
+       message = true;
+        }
+        
+        return message;
+    }
+    
+    public boolean update(Rol rol){
+        boolean message = true;      
         dao.update(rol);
+        return message;
     }
     
     public Rol getOne(String id){
@@ -26,5 +38,9 @@ public class RolService {
     
     public void delete(String id){
         dao.delete(id);
+    }
+
+    public String newCode() {
+         return dao.newCode();
     }
 }

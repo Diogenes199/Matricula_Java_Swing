@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,8 @@ public class RolDAO implements IRol{
      private String DELETE = "DELETE FROM roles ";
      private String GETALL = "SELECT id_rol, nombre_rol FROM roles ";
      private String GETONE = " WHERE id_rol = ?";
+     private String GETROLES = " WHERE nombre_rol = ?";
+      private String NEWCOD = "SELECT SUBSTRING(MAX(id_rol),3) FROM roles";
     
      private Rol  Data(ResultSet resultado_data) throws SQLException {
           String id=resultado_data.getString("id_rol");
@@ -137,6 +140,7 @@ public class RolDAO implements IRol{
         try
         {
             prepared=conexion.prepareStatement(GETALL + GETONE);
+            prepared.setString(1, id);
             resultado_data=prepared.executeQuery();
             
             if(resultado_data.next())
@@ -150,6 +154,53 @@ public class RolDAO implements IRol{
             }
         
         return getRol;
+    }
+   
+
+    @Override
+    public List<Rol> findNames(String role) {
+          PreparedStatement prepared = null;
+       List<Rol> lista = new ArrayList<>();       
+       ResultSet resultado_data = null;
+       conexion = conn.getConexion();        
+        try
+        {
+            prepared=conexion.prepareStatement(GETALL+ GETROLES);
+            prepared.setString(1, role);
+            resultado_data=prepared.executeQuery();
+            
+            while(resultado_data.next())
+            {
+              lista.add(Data(resultado_data));
+            }
+            
+        }catch (SQLException ex) 
+            {
+                System.out.println("ERROR : "+ ex.getMessage());
+            }
+        
+        return lista;
+    }
+    
+    @Override
+    public String newCode() {
+         String cod = "R0001";
+        PreparedStatement prepare_new_code=null;
+        conexion = conn.getConexion();
+        ResultSet result_data=null;
+		try{
+			prepare_new_code = conexion.prepareStatement(NEWCOD);
+			result_data = prepare_new_code.executeQuery();
+			
+			if(result_data.next()){
+				DecimalFormat formato_decimal = new DecimalFormat("0000");
+				cod = "R" + formato_decimal.format(Integer.parseInt(result_data.getString(1)) + 1); 
+			}
+			
+		}catch (SQLException e) {
+		                  System.out.println("ERROR "+e.getMessage());
+		}
+		return cod;
     }
     
 }
