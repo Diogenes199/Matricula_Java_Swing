@@ -134,7 +134,7 @@ public class RolDAO implements IRol{
     @Override
     public Rol findById(String id) {
          PreparedStatement prepared = null;
-      Rol getRol = new Rol();       
+      Rol getRol = null;       
        ResultSet resultado_data = null;
        conexion = conn.getConexion();        
         try

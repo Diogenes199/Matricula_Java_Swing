@@ -414,7 +414,6 @@ private UsuarioTableModel usuarioTableModel ;
             panelUsuario.dataSave();
             Usuario existe = controladorUser.getOne(panelUsuario.getCod());
             Usuario usuario = panelUsuario.getUsuario();
-            System.out.println(existe);
             if(existe!=null )
             {
                 estado = controladorUser.update(usuario);

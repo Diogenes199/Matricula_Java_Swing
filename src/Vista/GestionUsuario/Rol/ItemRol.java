@@ -437,7 +437,6 @@ public class ItemRol extends javax.swing.JInternalFrame {
         panelRol.dataSave();
         Rol existe = controladorRol.getOne(panelRol.getCod());
         Rol  rol= panelRol.getRol();
-        System.out.println(existe);
         if(existe!=null )
         {
             estado = controladorRol.update(rol);
@@ -448,8 +447,10 @@ public class ItemRol extends javax.swing.JInternalFrame {
             message = estado?"Usuario Insertado con exito":"Rellenar los espacios requeridos (*)";
         }
 
+
         String image =  estado?"exito.png":"error.png";
         ImageIcon icon = new ImageIcon(ruta + image);
+
         JOptionPane.showMessageDialog(null, message, "Message", JOptionPane.INFORMATION_MESSAGE, icon);
         if(estado){
             panelRol.setRol(null);
@@ -544,9 +545,7 @@ private int valor;
           } 
       
     private void activarBotonesGuardar(boolean activo){
-             
-              this.btn_Cancelar.setEnabled(activo);
-               
+          this.btn_Cancelar.setEnabled(activo);
           this.btn_Guardar.setEnabled(activo);   
         
        }
@@ -559,7 +558,6 @@ private int valor;
    
      private Rol getRolSelection() {
         String id= tblRol.getValueAt(tblRol.getSelectedRow(),0).toString();
-         System.out.println(id);
         return controladorRol.getOne(id);
     }
     
