@@ -7,7 +7,7 @@ import Vista.auth.AccesoForm;
 
 
 
-public class Sistemamatricula {
+public class SistemaMatricula {
 
 
     public static void main(String[] args) {

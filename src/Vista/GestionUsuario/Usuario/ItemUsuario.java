@@ -40,13 +40,13 @@ private UsuarioTableModel usuarioTableModel ;
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        panelUsuario = new Vista.GestionUsuario.Usuario.PanelUsuario();
         jPanel2 = new javax.swing.JPanel();
         btn_Cancelar = new javax.swing.JButton();
         btn_Nuevo = new javax.swing.JButton();
         btn_Borrar = new javax.swing.JButton();
         btn_Editar = new javax.swing.JButton();
         btn_Guardar = new javax.swing.JButton();
+        btn_Close = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txt_Buscado = new javax.swing.JTextField();
@@ -54,13 +54,16 @@ private UsuarioTableModel usuarioTableModel ;
         rbNombreA = new javax.swing.JRadioButton();
         rbRol = new javax.swing.JRadioButton();
         btn_Buscar = new javax.swing.JButton();
-        btn_pdf = new javax.swing.JButton();
         btn_excel = new javax.swing.JButton();
         btn_txt = new javax.swing.JButton();
         rbTodos = new javax.swing.JRadioButton();
+        btn_pdf = new javax.swing.JButton();
         panel_tabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblUsuario = new javax.swing.JTable();
+        panelUsuario = new Vista.GestionUsuario.Usuario.PanelUsuario();
+
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btn_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Crud/cancel.png"))); // NOI18N
         btn_Cancelar.setText("Cancelar");
@@ -131,6 +134,19 @@ private UsuarioTableModel usuarioTableModel ;
             }
         });
 
+        btn_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Crud/new.png"))); // NOI18N
+        btn_Close.setText("Salir");
+        btn_Close.setBorderPainted(false);
+        btn_Close.setContentAreaFilled(false);
+        btn_Close.setFocusable(false);
+        btn_Close.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Close.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CloseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -138,27 +154,32 @@ private UsuarioTableModel usuarioTableModel ;
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btn_Cancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 482, Short.MAX_VALUE)
                 .addComponent(btn_Nuevo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_Guardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_Editar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btn_Borrar)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btn_Close)
+                .addGap(17, 17, 17))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_Cancelar)
-                    .addComponent(btn_Nuevo)
                     .addComponent(btn_Borrar)
                     .addComponent(btn_Editar)
-                    .addComponent(btn_Guardar))
+                    .addComponent(btn_Guardar)
+                    .addComponent(btn_Nuevo)
+                    .addComponent(btn_Close))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 314, -1, -1));
 
         jLabel2.setText("Buscar:");
 
@@ -199,17 +220,6 @@ private UsuarioTableModel usuarioTableModel ;
             }
         });
 
-        btn_pdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Export/pdf.png"))); // NOI18N
-        btn_pdf.setBorderPainted(false);
-        btn_pdf.setContentAreaFilled(false);
-        btn_pdf.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_pdf.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_pdf.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_pdfActionPerformed(evt);
-            }
-        });
-
         btn_excel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Export/excel.png"))); // NOI18N
         btn_excel.setBorderPainted(false);
         btn_excel.setContentAreaFilled(false);
@@ -240,6 +250,17 @@ private UsuarioTableModel usuarioTableModel ;
             }
         });
 
+        btn_pdf.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Export/pdf.png"))); // NOI18N
+        btn_pdf.setBorderPainted(false);
+        btn_pdf.setContentAreaFilled(false);
+        btn_pdf.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_pdf.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_pdf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_pdfActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -262,21 +283,23 @@ private UsuarioTableModel usuarioTableModel ;
                         .addComponent(rbRol, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(rbTodos)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_pdf)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addComponent(btn_excel, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_pdf)
+                .addGap(26, 26, 26))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_excel)
+                    .addComponent(btn_pdf)
+                    .addComponent(btn_txt)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btn_Buscar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -287,12 +310,11 @@ private UsuarioTableModel usuarioTableModel ;
                             .addComponent(rbCod)
                             .addComponent(rbNombreA)
                             .addComponent(rbRol)
-                            .addComponent(rbTodos)))
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btn_excel)
-                        .addComponent(btn_txt)
-                        .addComponent(btn_pdf))))
+                            .addComponent(rbTodos))))
+                .addGap(9, 9, 9))
         );
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 379, -1, -1));
 
         panel_tabla.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.black, java.awt.Color.black));
 
@@ -315,7 +337,7 @@ private UsuarioTableModel usuarioTableModel ;
             panel_tablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panel_tablaLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 990, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 945, Short.MAX_VALUE)
                 .addContainerGap())
         );
         panel_tablaLayout.setVerticalGroup(
@@ -326,35 +348,8 @@ private UsuarioTableModel usuarioTableModel ;
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(panelUsuario, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(panel_tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(panel_tabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        getContentPane().add(panel_tabla, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 476, -1, -1));
+        getContentPane().add(panelUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 962, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -519,6 +514,10 @@ private int valor;
        tblUsuario.clearSelection();
     }//GEN-LAST:event_txt_BuscadoMousePressed
 
+    private void btn_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CloseActionPerformed
+           this.dispose();
+    }//GEN-LAST:event_btn_CloseActionPerformed
+
     
         private void activarBotonesCRUD(boolean activo){
         this.btn_Borrar.setEnabled(activo);
@@ -546,6 +545,7 @@ private int valor;
     private javax.swing.JButton btn_Borrar;
     private javax.swing.JButton btn_Buscar;
     private javax.swing.JButton btn_Cancelar;
+    private javax.swing.JButton btn_Close;
     private javax.swing.JButton btn_Editar;
     private javax.swing.JButton btn_Guardar;
     private javax.swing.JButton btn_Nuevo;

@@ -20,7 +20,7 @@ public class ImageDesktop implements Border{
     {
         try
         {
-            URL   direccion_imagen= getClass().getResource("../../Logos/Wallpaper/font2.jpeg");
+            URL   direccion_imagen= getClass().getResource("/Logos/Wallpaper/font2.jpeg");
             if(direccion_imagen==null)
             {
               throw new IllegalArgumentException("No se encuentra la imagen");

@@ -1,4 +1,5 @@
 package Vista.Menu;
+import Vista.GestionAcademico.TipoDocumento.ItemTipoDocumento;
 import Vista.GestionUsuario.Rol.ItemRol;
 import Vista.GestionUsuario.Usuario.ItemUsuario;
 import Vista.Personalizado.ImageDesktop;
@@ -59,18 +60,18 @@ public class MenuForm extends JFrame {
         );
         EscritorioPaneLayout.setVerticalGroup(
             EscritorioPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 607, Short.MAX_VALUE)
+            .addGap(0, 592, Short.MAX_VALUE)
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jMenuBar1.setForeground(new java.awt.Color(0, 102, 255));
 
-        menuUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Usuario/admin.png"))); // NOI18N
+        menuUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Usuario/admin.png"))); // NOI18N
         menuUsuario.setText("Usuario");
         menuUsuario.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
 
         itemUsuario.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        itemUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Usuario/user.png"))); // NOI18N
+        itemUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Usuario/user.png"))); // NOI18N
         itemUsuario.setText("Usuario");
         itemUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -80,7 +81,7 @@ public class MenuForm extends JFrame {
         menuUsuario.add(itemUsuario);
 
         itemRol.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        itemRol.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Usuario/rol.png"))); // NOI18N
+        itemRol.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Usuario/rol.png"))); // NOI18N
         itemRol.setText("Rol");
         itemRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,17 +93,17 @@ public class MenuForm extends JFrame {
 
         jMenuBar1.add(menuUsuario);
 
-        menuAcademico.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Academico/academico.png"))); // NOI18N
+        menuAcademico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Academico/academico.png"))); // NOI18N
         menuAcademico.setText("Academico");
         menuAcademico.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
 
         itemEstudiante.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        itemEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Academico/estudiante.png"))); // NOI18N
+        itemEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Academico/estudiante.png"))); // NOI18N
         itemEstudiante.setText("Estudiante");
         menuAcademico.add(itemEstudiante);
 
         itemDocumento.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        itemDocumento.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Academico/documento.png"))); // NOI18N
+        itemDocumento.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Academico/documento.png"))); // NOI18N
         itemDocumento.setText("Tipo Documento");
         itemDocumento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -113,17 +114,17 @@ public class MenuForm extends JFrame {
 
         jMenuBar1.add(menuAcademico);
 
-        menuCursoHora.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/CursoyHorario/cursoHorario.png"))); // NOI18N
+        menuCursoHora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/CursoyHorario/cursoHorario.png"))); // NOI18N
         menuCursoHora.setText("Cursos y Horarios");
         menuCursoHora.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
 
         itemCurso.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        itemCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/CursoyHorario/curso.png"))); // NOI18N
+        itemCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/CursoyHorario/curso.png"))); // NOI18N
         itemCurso.setText("Curso");
         menuCursoHora.add(itemCurso);
 
         itemModalidad.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        itemModalidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/CursoyHorario/modalidad.png"))); // NOI18N
+        itemModalidad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/CursoyHorario/modalidad.png"))); // NOI18N
         itemModalidad.setText("Modalidad");
         itemModalidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,51 +134,51 @@ public class MenuForm extends JFrame {
         menuCursoHora.add(itemModalidad);
 
         itemHorario.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        itemHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/CursoyHorario/horario.png"))); // NOI18N
+        itemHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/CursoyHorario/horario.png"))); // NOI18N
         itemHorario.setText("Horario");
         menuCursoHora.add(itemHorario);
 
         jMenuBar1.add(menuCursoHora);
 
-        menuMatricula.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Matricula/matricula_logo.png"))); // NOI18N
+        menuMatricula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Matricula/matricula_logo.png"))); // NOI18N
         menuMatricula.setText("Matricula");
         menuMatricula.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
 
         itemMatricula.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        itemMatricula.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Matricula/matricula.png"))); // NOI18N
+        itemMatricula.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Matricula/matricula.png"))); // NOI18N
         itemMatricula.setText("Matricula");
         menuMatricula.add(itemMatricula);
 
         itemComprobante.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
-        itemComprobante.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Matricula/comprobante.png"))); // NOI18N
+        itemComprobante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Matricula/comprobante.png"))); // NOI18N
         itemComprobante.setText("Comprobante");
         menuMatricula.add(itemComprobante);
 
         jMenuBar1.add(menuMatricula);
 
-        menuPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Pago/pago_logo.png"))); // NOI18N
+        menuPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Pago/pago_logo.png"))); // NOI18N
         menuPago.setText("Pago");
         menuPago.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
 
-        itemPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Pago/pago.png"))); // NOI18N
+        itemPago.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Pago/pago.png"))); // NOI18N
         itemPago.setText("Pago");
         menuPago.add(itemPago);
 
         jMenuBar1.add(menuPago);
 
-        menuReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Reporte/reporte.png"))); // NOI18N
+        menuReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Reporte/reporte.png"))); // NOI18N
         menuReporte.setText("Reporte");
         menuReporte.setFont(new java.awt.Font("Arial Rounded MT Bold", 0, 12)); // NOI18N
 
-        itemReporteEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Reporte/reporteEstudiante.png"))); // NOI18N
+        itemReporteEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Reporte/reporteEstudiante.png"))); // NOI18N
         itemReporteEstudiante.setText("Reporte de Demografía de Estudiantes");
         menuReporte.add(itemReporteEstudiante);
 
-        itemReporteAbandono.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Reporte/reporteAbandono.png"))); // NOI18N
+        itemReporteAbandono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Reporte/reporteAbandono.png"))); // NOI18N
         itemReporteAbandono.setText("Reporte de Retención y Abandono");
         menuReporte.add(itemReporteAbandono);
 
-        itemReporteCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("../../Logos/Reporte/reporteCurso.png"))); // NOI18N
+        itemReporteCurso.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Reporte/reporteCurso.png"))); // NOI18N
         itemReporteCurso.setText("Reporte de Ingresos por Curso");
         menuReporte.add(itemReporteCurso);
 
@@ -231,7 +232,7 @@ public class MenuForm extends JFrame {
     }//GEN-LAST:event_itemModalidadActionPerformed
 
     private void itemDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDocumentoActionPerformed
-        
+        Viewinstance(new ItemTipoDocumento());
     }//GEN-LAST:event_itemDocumentoActionPerformed
 
 

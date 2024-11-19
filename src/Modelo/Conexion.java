@@ -9,12 +9,13 @@ public class Conexion {
 
     public Conexion() {
         try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conexion = DriverManager.getConnection(
                     Config.DRIVER+"://"+Config.URL+":"+Config.PORT+"/"+Config.BDNAME, 
                     Config.USERNAME,
                     Config.PASSWORD
             );
-        } catch (SQLException e) {
+        } catch (SQLException  | ClassNotFoundException e) {
             e.printStackTrace();
         }
     }
