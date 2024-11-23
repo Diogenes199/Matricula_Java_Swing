@@ -1,46 +1,47 @@
-
 package Controlador.Servicios;
 
-import Modelo.DAO.RolDAO;
+import Modelo.DAO.Control.MasterDAO;
 import Modelo.Entidades.Rol;
+import Modelo.Interfaces.Control.IMaster;
 import java.util.List;
 
 public class RolService {
-    
-     private RolDAO dao = new RolDAO();
-    public List<Rol> getAll(){
-        return dao.findAll();
+
+    private final IMaster dao = new MasterDAO();
+
+    public List<Rol> getAll() {
+        return dao.rolI().findAll();
     }
-    
-    public List<Rol> getNames(String role){
-        return dao.findNames(role);
+
+    public List<Rol> getNames(String role) {
+        return dao.rolI().findNames(role);
     }
-    
-    public boolean save(Rol rol){
-        boolean message = false;      
-        if(!rol.getId().trim().isEmpty() && !rol.getRol().trim().isEmpty() ){
-        dao.create(rol);
-       message = true;
+
+    public boolean save(Rol rol) {
+        boolean message = false;
+        if (rol!=null) {
+            dao.rolI().create(rol);
+            message = true;
         }
-        
+
         return message;
     }
-    
-    public boolean update(Rol rol){
-        boolean message = true;      
-        dao.update(rol);
+
+    public boolean update(Rol rol) {
+        boolean message = true;
+        dao.rolI().update(rol);
         return message;
     }
-    
-    public Rol getOne(String id){
-    return     dao.findById(id);
+
+    public Rol getOne(String id) {
+        return dao.rolI().findById(id);
     }
-    
-    public void delete(String id){
-        dao.delete(id);
+
+    public void delete(String id) {
+        dao.rolI().delete(id);
     }
 
     public String newCode() {
-         return dao.newCode();
+        return dao.rolI().newCode();
     }
 }

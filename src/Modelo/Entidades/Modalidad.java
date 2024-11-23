@@ -1,7 +1,5 @@
 package Modelo.Entidades;
 
-import java.util.logging.Logger;
-
 public class Modalidad {
     private String id,descripcion;
 
@@ -11,6 +9,10 @@ public class Modalidad {
      }
 
     public Modalidad() {
+    }
+
+    public Modalidad(String id) {
+        this.id = id;
     }
     
 

@@ -1,6 +1,7 @@
 package Modelo.Entidades;
 
-import java.util.Date;
+
+import java.time.LocalDate;
 
 public class Matricula {
     private String id ;
@@ -8,13 +9,17 @@ public class Matricula {
     private Curso curso;
     private Modalidad modalidad;
     private Horario horario;
-    private Date fechaInicio;
+    private LocalDate fechaInicio;
     private double costoTotal;
 
     public Matricula() {
     }
+    
+    public Matricula(String id) {
+        this.id = id;
+    }
    
-    public Matricula(String id, Cliente cliente, Curso curso, Modalidad modalidad, Horario horario, Date fechaInicio, double costoTotal) {
+    public Matricula(String id, Cliente cliente, Curso curso, Modalidad modalidad, Horario horario, LocalDate fechaInicio, double costoTotal) {
         this.id = id;
         this.cliente = cliente;
         this.curso = curso;
@@ -64,11 +69,11 @@ public class Matricula {
         this.horario = horario;
     }
 
-    public Date getFechaInicio() {
+    public LocalDate getFechaInicio() {
         return fechaInicio;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
+    public void setFechaInicio(LocalDate fechaInicio) {
         this.fechaInicio = fechaInicio;
     }
 

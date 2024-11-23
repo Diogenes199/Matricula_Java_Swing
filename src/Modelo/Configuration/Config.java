@@ -1,4 +1,4 @@
-package Modelo;
+package Modelo.Configuration;
  
 public class Config {
 

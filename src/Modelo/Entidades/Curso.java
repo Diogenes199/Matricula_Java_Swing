@@ -7,6 +7,11 @@ public class Curso {
     public Curso() {
     }
 
+    public Curso(String id) {
+        this.id = id;
+    }
+
+    
     public Curso(String id, String curso, double inscripcion, double libro) {
         this.id = id;
         this.curso = curso;

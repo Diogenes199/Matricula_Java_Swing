@@ -57,8 +57,15 @@ public class PanelRol extends javax.swing.JPanel {
         if(rol == null){
             rol = new Rol();
         }
+        if(
+                !txtId.getText().trim().isEmpty() &&
+                !txtRol.getText().trim().isEmpty()
+                ){
         rol.setId(txtId.getText().trim());
         rol.setRol(txtRol.getText().trim());
+        }else{
+            rol = null;
+        }
     }
     
     

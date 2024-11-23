@@ -5,7 +5,11 @@ public class TipoComprobante {
 
     public TipoComprobante() {
     }
-
+    
+    public TipoComprobante(String id) {
+        this.id = id;
+    }
+    
     public TipoComprobante(String id, String descripcion) {
         this.id = id;
         this.descripcion = descripcion;

@@ -1,5 +1,6 @@
-package Modelo.Interfaces;
+package Modelo.Interfaces.Model;
 
+import Modelo.Interfaces.Repository.IRepositoryDAO;
 import Modelo.Entidades.Usuario;
 import java.sql.ResultSet;
 import java.util.List;

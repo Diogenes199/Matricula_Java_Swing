@@ -1,4 +1,4 @@
-package Modelo.Interfaces;
+package Modelo.Interfaces.Repository;
 
 import java.util.List;
 

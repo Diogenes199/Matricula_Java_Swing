@@ -55,8 +55,17 @@ public class PanelTipoDocumento extends javax.swing.JPanel {
         if(documento == null){
             documento = new TipoDocumento();
         }
+        if(
+                !txtId.getText().trim().isEmpty() &&
+                !txtDocumento.getText().trim().isEmpty()
+                
+                ){
         documento.setId(txtId.getText().trim());
         documento.setDescripcion(txtDocumento.getText().trim());
+        }
+        else{
+            documento = null;
+        }
     }
     
     

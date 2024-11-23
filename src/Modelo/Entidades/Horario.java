@@ -10,6 +10,10 @@ public class Horario {
     public Horario() {
     }
 
+    public Horario(String id) {
+        this.id = id;
+    }
+
     
     public Horario(String id, String dia, LocalTime horaInicio, LocalTime horaFin) {
         this.id = id;

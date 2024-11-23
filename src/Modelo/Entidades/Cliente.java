@@ -15,6 +15,10 @@ public class Cliente {
     public Cliente() {
     }
 
+      public Cliente(String id) {
+          this.id = id;
+    }
+      
     public Cliente(String id, Usuario usuario, TipoDocumento documento, String numeroDocumento, String sexo, Date fechaNacimiento, String ubigeo, String pais, String departamento, String provincia, String distrito) {
         this.id = id;
         this.usuario = usuario;

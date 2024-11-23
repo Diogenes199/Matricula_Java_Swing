@@ -120,7 +120,19 @@ public class PanelUsuario extends javax.swing.JPanel {
         if (usuario == null) {
             usuario = new Usuario();
         }
-        usuario.setId(txtId.getText());
+        if(
+                !txtId.getText().trim().isEmpty() &&
+                !txtNombre.getText().trim().isEmpty() &&
+                !txtPaterno.getText().trim().isEmpty() &&
+                !txtMaterno.getText().trim().isEmpty() &&
+                !txtDni.getText().trim().isEmpty() &&
+                !txtUsuario.getText().trim().isEmpty() &&
+                !txtContra.getText().trim().isEmpty() &&
+                !txtCelular1.getText().trim().isEmpty() &&
+                !txtCelular2.getText().trim().isEmpty() &&
+                !txtDireccion.getText().trim().isEmpty()
+                ){
+         usuario.setId(txtId.getText());
         usuario.setNombre(txtNombre.getText());
         usuario.setPaterno(txtPaterno.getText());
         usuario.setMaterno(txtMaterno.getText());
@@ -130,10 +142,16 @@ public class PanelUsuario extends javax.swing.JPanel {
         usuario.setCelular1(txtCelular1.getText());
         usuario.setCelular2(txtCelular2.getText());
         usuario.setDireccion(txtDireccion.getText());
-        
         AdapterRolView rol_seleccionado=(AdapterRolView)cmbRol.getSelectedItem();
         Rol rolSelect=rol_seleccionado.getRol();
         usuario.setRol(rolSelect);
+        }else{
+            usuario = null;
+        }
+        
+        
+        
+        
     }
 
     

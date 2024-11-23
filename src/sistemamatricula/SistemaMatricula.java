@@ -12,8 +12,8 @@ public class SistemaMatricula {
 
     public static void main(String[] args) {
             
-           // AccesoForm acceso = new AccesoForm();
-          // acceso.setVisible(true);
+//            AccesoForm acceso = new AccesoForm();
+//           acceso.setVisible(true);
           
           MenuForm menu = new MenuForm();
           menu.setVisible(true);

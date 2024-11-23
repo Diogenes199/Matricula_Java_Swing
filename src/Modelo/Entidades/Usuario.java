@@ -9,6 +9,11 @@ public class Usuario {
     public Usuario() {
     }
 
+    public Usuario(String id) {
+        this.id = id;
+    }
+    
+    
     public Usuario(String id, String nombre, String paterno, String materno, String dni, String usuario, String contra, String celular1, String celular2, String direccion, Rol rol) {
         this.id = id;
         this.nombre = nombre;

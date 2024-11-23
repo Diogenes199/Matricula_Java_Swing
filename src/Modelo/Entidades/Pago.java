@@ -1,11 +1,11 @@
 package Modelo.Entidades;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 public class Pago {
     private String id;
     private Matricula matricula;
-    private Date fechaPago;
+    private LocalDate fechaPago;
     private double monto;
     private String detalle;
     private TipoComprobante comprobante;
@@ -16,7 +16,7 @@ public class Pago {
     public Pago() {
     }
 
-    public Pago(String id, Matricula matricula, Date fechaPago, double monto, String detalle, TipoComprobante comprobante, String numeroComprobante, Usuario Usuario, String observaciones) {
+    public Pago(String id, Matricula matricula, LocalDate fechaPago, double monto, String detalle, TipoComprobante comprobante, String numeroComprobante, Usuario Usuario, String observaciones) {
         this.id = id;
         this.matricula = matricula;
         this.fechaPago = fechaPago;
@@ -44,11 +44,11 @@ public class Pago {
         this.matricula = matricula;
     }
 
-    public Date getFechaPago() {
+    public LocalDate getFechaPago() {
         return fechaPago;
     }
 
-    public void setFechaPago(Date fechaPago) {
+    public void setFechaPago(LocalDate fechaPago) {
         this.fechaPago = fechaPago;
     }
 
