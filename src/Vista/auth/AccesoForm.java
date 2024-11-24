@@ -1,5 +1,5 @@
 package Vista.auth;
-import Controlador.UsuarioControlador;
+import Controlador.Controladores.UsuarioControlador;
 import Modelo.Entidades.Usuario;
 import Vista.Menu.MenuForm;
 import javax.swing.JOptionPane;

@@ -1,4 +1,4 @@
-package Controlador;
+package Controlador.Controladores;
 
 import Controlador.Servicios.RolService;
 import Modelo.Entidades.Rol;

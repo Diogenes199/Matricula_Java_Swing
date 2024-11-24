@@ -1,6 +1,6 @@
 package Vista.GestionAcademico.TipoDocumento.Form;
 
-import Controlador.TipoDocumentoControlador;
+import Controlador.Controladores.TipoDocumentoControlador;
 import Modelo.Entidades.TipoDocumento;
 import Vista.GestionAcademico.TipoDocumento.ModelsAdapter.TipoDocumentoTableModel;
 import javax.swing.ImageIcon;

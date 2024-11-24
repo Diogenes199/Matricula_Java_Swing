@@ -1,50 +1,74 @@
 package Vista.GestionCursosyHorarios.Horario.ModelsAdapter;
 
+import java.beans.PropertyChangeListener;
 import java.text.ParseException;
-import javax.swing.text.DefaultFormatter;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import javax.swing.JFormattedTextField;
 import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 
-public class TimeAdapter extends DefaultFormatterFactory{
+public class TimeAdapter {
     
-      public TimeAdapter() {
-        super(new TimeFormatter()); // Establecer un formateador personalizado
+      private JFormattedTextField timeField;
+
+    public TimeAdapter(JFormattedTextField timeField) {
+        this.timeField = timeField;
+        configureTimeField();
     }
 
-    // Formateador personalizado para validar y formatear la hora
-    static class TimeFormatter extends DefaultFormatter {
+    public TimeAdapter() {
+    }
+    
+    
 
-        public TimeFormatter() {
-            setOverwriteMode(true); // Sobrescribir texto en lugar de insertar
-            setAllowsInvalid(false); // No permite entradas inválidas
+    private void configureTimeField() {
+        MaskFormatter timeFormatter = null;
+        try {
+            timeFormatter = new MaskFormatter("##:##:##");
+            timeFormatter.setPlaceholderCharacter('0');
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
+        
+        DefaultFormatterFactory formatterFactory = new DefaultFormatterFactory(timeFormatter);
+        timeField.setFormatterFactory(formatterFactory);
+        timeField.setColumns(8);
+        timeField.setValue("00:00:00");
 
-        @Override
-        public Object stringToValue(String text) throws ParseException {
-            if (!text.matches("\\d{1,2}:\\d{1,2}:\\d{1,2}")) {
-                throw new ParseException("Formato inválido", 0);
+        // Listener para validar la hora
+        PropertyChangeListener listener = evt -> validateTime();
+        timeField.addPropertyChangeListener("value", listener);
+    }
+
+    private void validateTime() {
+        String input = timeField.getText();
+        String[] parts = input.split(":");
+        try {
+            int hour = Integer.parseInt(parts[0]);
+            if (hour < 0 || hour > 23) {
+                timeField.setValue("00:00:00");
             }
-
-            String[] parts = text.split(":");
-            int hours = Integer.parseInt(parts[0]);
-            int minutes = Integer.parseInt(parts[1]);
-            int seconds = Integer.parseInt(parts[2]);
-
-            if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59 || seconds < 0 || seconds > 59) {
-                throw new ParseException("Valores fuera de rango", 0);
-            }
-
-            // Devuelve el valor como una cadena en formato HH:mm:ss
-            return String.format("%02d:%02d:%02d", hours, minutes, seconds);
-        }
-
-        @Override
-        public String valueToString(Object value) throws ParseException {
-            if (value == null) {
-                return "00:00:00";
-            }
-
-            // Asume que el valor es un String en formato HH:mm:ss
-            return value.toString();
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
+            timeField.setValue("00:00:00");
         }
     }
+
+    public JFormattedTextField getTimeField() {
+        return timeField;
+    }
+    
+    public LocalTime getTimeValue(String value){
+        LocalTime time = null;
+                try {
+                    // Crear un LocalTime a partir del texto
+                     time = LocalTime.parse(value, DateTimeFormatter.ofPattern("HH:mm:ss"));
+                } catch (DateTimeParseException ex) {
+                    System.out.println("ERROR " + ex.getMessage());
+                }
+         return time;
+    }
+    
+    
 }

@@ -1,6 +1,6 @@
 package Vista.GestionCursosyHorarios.Curso.ModelsAdapter;
 
-import Controlador.CursoControlador;
+import Controlador.Controladores.CursoControlador;
 import Modelo.Entidades.Curso;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,6 +1,6 @@
 package Vista.GestionCursosyHorarios.Modalidad.Form;
 
-import Controlador.ModalidadControlador;
+import Controlador.Controladores.ModalidadControlador;
 import Modelo.Entidades.Modalidad;
 import Vista.GestionCursosyHorarios.Modalidad.ModelsAdapter.ModalidadTableModel;
 import javax.swing.ImageIcon;

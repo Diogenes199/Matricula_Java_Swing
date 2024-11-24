@@ -1,6 +1,6 @@
 package Vista.GestionCursosyHorarios.Curso.Form;
 
-import Controlador.CursoControlador;
+import Controlador.Controladores.CursoControlador;
 import Modelo.Entidades.Curso;
 import Vista.GestionCursosyHorarios.Curso.ModelsAdapter.CursoTableModel;
 import javax.swing.ImageIcon;

@@ -1,45 +1,88 @@
 package Vista.GestionCursosyHorarios.Horario.Form;
 
-import java.text.ParseException;
-import javax.swing.JOptionPane;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
+import Modelo.Entidades.Horario;
+import Vista.GestionCursosyHorarios.Horario.ModelsAdapter.TimeAdapter;
 
 public class PanelHorario extends javax.swing.JPanel {
 
+    private Horario horario;
+    private boolean editable;
+    
     public PanelHorario() {
         initComponents();
         formateTime();
     }
 
-    
-    private void formateTime(){
-        
-           
-        MaskFormatter horaFormatter = null;
-        try {
-            horaFormatter = new MaskFormatter("##:##:##"); 
-            horaFormatter.setPlaceholderCharacter('0');    
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        DefaultFormatterFactory tf = new DefaultFormatterFactory(horaFormatter);
-        fmtInicio.setFormatterFactory(tf);
-          fmtInicio.setColumns(8);
-          fmtInicio.setValue("00:00:00");
-          
-          fmtInicio.addPropertyChangeListener("value", evt -> {
-    String input = fmtInicio.getText();
-    String[] partes = input.split(":");
-    
-
-    int hora = Integer.parseInt(partes[0]);
-    if (hora < 0 || hora > 23) {
-        JOptionPane.showMessageDialog(this, "La hora debe estar entre 00 y 23", "Error", JOptionPane.ERROR_MESSAGE);
-        fmtInicio.setValue("00:00:00");
+    public Horario getHorario() {
+        return horario;
     }
-});
-        
+
+    public void setHorario(Horario horario) {
+        this.horario = horario;
+    }
+
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+        txtId.setEnabled(false);
+        cmbDia.setEnabled(editable);
+        fmtInicio.setEnabled(editable);
+        fmtFinal.setEnabled(editable);
+        if(editable){
+            cmbDia.requestFocus();            
+        }
+    }
+
+    public String getCod() {
+        return txtId.getText().trim();
+    }
+
+    public void setCod(String cod) {
+        this.txtId.setText(cod.trim());
+    }
+    
+    private void formateTime(){        
+        TimeAdapter adapter = new TimeAdapter(fmtInicio);
+        TimeAdapter adapter2 = new TimeAdapter(fmtFinal);
+    }
+    
+    public void dataLoad(){
+        if(horario != null){
+            txtId.setText(horario.getId());
+            cmbDia.setSelectedItem(horario.getDia().toUpperCase());
+            fmtInicio.setText(horario.getHoraInicio().toString());
+            fmtFinal.setText(horario.getHoraFin().toString());
+        }else{
+            txtId.setText("");
+            cmbDia.setSelectedIndex(0);
+            fmtInicio.setText("00:00:00");
+            fmtFinal.setText("00:00:00");
+        }
+    }
+    
+    public void dataSave(){
+        TimeAdapter adapter = new TimeAdapter();
+        if(horario == null){
+            horario = new Horario();
+        }
+        if(
+           !txtId.getText().trim().isEmpty() &&
+           cmbDia.getSelectedIndex() != 0 &&
+           adapter.getTimeValue(fmtInicio.getText().trim())!=null &&
+           adapter.getTimeValue(fmtFinal.getText().trim())!=null 
+           )
+        {
+            horario.setId(txtId.getText().trim());
+            horario.setDia(cmbDia.getSelectedItem().toString());
+            horario.setHoraInicio(adapter.getTimeValue(fmtInicio.getText().trim()));
+            horario.setHoraFin(adapter.getTimeValue(fmtFinal.getText().trim()));
+        }
+        else{
+            horario = null;
+        }
     }
     
     @SuppressWarnings("unchecked")
@@ -73,7 +116,7 @@ public class PanelHorario extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,7 +132,7 @@ public class PanelHorario extends javax.swing.JPanel {
         jLabel2.setText("Dia:");
 
         cmbDia.setFont(new java.awt.Font("Hack", 1, 13)); // NOI18N
-        cmbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo" }));
+        cmbDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "--- SELECCIONE DIA --", "LUNES", "MARTES", "MIERCOLES", "JUEVES", "VIERNES", "SABADOS", "DOMINGOS" }));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -99,8 +142,7 @@ public class PanelHorario extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cmbDia, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(cmbDia, 0, 209, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,7 +177,7 @@ public class PanelHorario extends javax.swing.JPanel {
                     .addComponent(jLabel4))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(fmtFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                    .addComponent(fmtFinal, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)
                     .addComponent(fmtInicio))
                 .addGap(14, 14, 14))
         );

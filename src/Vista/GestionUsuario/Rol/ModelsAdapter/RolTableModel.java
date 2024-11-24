@@ -1,6 +1,6 @@
 package Vista.GestionUsuario.Rol.ModelsAdapter;
 
-import Controlador.RolControlador;
+import Controlador.Controladores.RolControlador;
 import Modelo.Entidades.Rol;
 import java.util.ArrayList;
 import java.util.List;

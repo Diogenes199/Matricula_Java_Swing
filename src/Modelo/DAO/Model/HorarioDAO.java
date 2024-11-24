@@ -5,6 +5,7 @@ import Modelo.Interfaces.Model.IHorario;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 public class HorarioDAO extends BaseDAO implements IHorario{
@@ -14,6 +15,9 @@ public class HorarioDAO extends BaseDAO implements IHorario{
     private final String DELETE = "DELETE FROM horarios ";
     private final String GETALL = "SELECT id_horario,dia, hora_inicio, hora_fin FROM horarios ";
     private final String GETONE = "WHERE id_horario = ?;";
+    private final String GETHORA = "WHERE dia LIKE ?";
+    private final String NEWCOD = "SELECT SUBSTRING(MAX(id_horario),3) FROM horarios";
+
 
     public Horario Data(ResultSet resultado_data) throws SQLException {
         return new Horario(
@@ -89,6 +93,40 @@ public class HorarioDAO extends BaseDAO implements IHorario{
             System.out.println("ERROR FIND : " + ex.getMessage());
         }
         return horario;
+    }
+
+    @Override
+    public String newCode() {
+        String cod = "H0001";
+        try (
+            PreparedStatement prepare_new_code = getConnection().prepareStatement(NEWCOD);
+            ResultSet result_data = prepare_new_code.executeQuery();
+                ){
+            if (result_data.next()) {
+                DecimalFormat formato_decimal = new DecimalFormat("0000");
+                cod = "H" + formato_decimal.format(Integer.parseInt(result_data.getString(1)) + 1);
+            }
+
+        } catch (SQLException e) {
+            System.out.println("ERROR " + e.getMessage());
+        } 
+        return cod;
+    }
+
+    @Override
+    public List<Horario> findByHorarios(String horario) {
+        List<Horario> lista = new ArrayList<>();
+        try (PreparedStatement prepared = getConnection().prepareStatement(GETALL + GETHORA);) {
+               prepared.setString(1,"%" + horario + "%");
+               try(ResultSet resultado_data = prepared.executeQuery()){
+            while (resultado_data.next()) {
+                lista.add(Data(resultado_data));
+            }
+         }
+        } catch (SQLException ex) {
+            System.out.println("ERROR : " + ex.getMessage());
+        }
+        return lista.isEmpty()?null:lista;
     }
     
 }

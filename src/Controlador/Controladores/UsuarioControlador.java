@@ -1,4 +1,4 @@
-package Controlador;
+package Controlador.Controladores;
 
 import Controlador.Servicios.UsuarioService;
 import Modelo.Entidades.Usuario;

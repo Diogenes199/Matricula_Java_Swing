@@ -1,6 +1,6 @@
 package Vista.GestionUsuario.Usuario.ModelsAdapter;
 
-import Controlador.UsuarioControlador;
+import Controlador.Controladores.UsuarioControlador;
 import Modelo.Entidades.Usuario;
 import java.util.ArrayList;
 import java.util.List;

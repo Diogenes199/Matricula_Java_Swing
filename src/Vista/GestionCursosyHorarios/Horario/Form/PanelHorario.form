@@ -77,7 +77,7 @@
                       <Component id="jLabel1" min="-2" pref="30" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="txtId" min="-2" pref="130" max="-2" attributes="0"/>
-                      <EmptySpace pref="20" max="32767" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -116,8 +116,7 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="cmbDia" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="cmbDia" pref="209" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -149,14 +148,15 @@
                   <Font name="Hack" size="13" style="1"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="7">
-                    <StringItem index="0" value="Lunes"/>
-                    <StringItem index="1" value="Martes"/>
-                    <StringItem index="2" value="Miercoles"/>
-                    <StringItem index="3" value="Jueves"/>
-                    <StringItem index="4" value="Viernes"/>
-                    <StringItem index="5" value="Sabado"/>
-                    <StringItem index="6" value="Domingo"/>
+                  <StringArray count="8">
+                    <StringItem index="0" value="--- SELECCIONE DIA --"/>
+                    <StringItem index="1" value="LUNES"/>
+                    <StringItem index="2" value="MARTES"/>
+                    <StringItem index="3" value="MIERCOLES"/>
+                    <StringItem index="4" value="JUEVES"/>
+                    <StringItem index="5" value="VIERNES"/>
+                    <StringItem index="6" value="SABADOS"/>
+                    <StringItem index="7" value="DOMINGOS"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -179,7 +179,7 @@
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="fmtFinal" pref="138" max="32767" attributes="0"/>
+                          <Component id="fmtFinal" pref="83" max="32767" attributes="0"/>
                           <Component id="fmtInicio" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>

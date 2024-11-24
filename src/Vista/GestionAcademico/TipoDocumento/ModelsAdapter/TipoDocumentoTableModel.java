@@ -1,6 +1,6 @@
 package Vista.GestionAcademico.TipoDocumento.ModelsAdapter;
 
-import Controlador.TipoDocumentoControlador;
+import Controlador.Controladores.TipoDocumentoControlador;
 import Modelo.Entidades.TipoDocumento;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;

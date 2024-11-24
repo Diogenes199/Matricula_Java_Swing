@@ -1,4 +1,4 @@
-package Controlador;
+package Controlador.Controladores;
 
 import Controlador.Servicios.ModalidadService;
 import Modelo.Entidades.Modalidad;

@@ -1,7 +1,7 @@
 package Vista.GestionUsuario.Usuario.Form;
 
-import Controlador.RolControlador;
-import Controlador.UsuarioControlador;
+import Controlador.Controladores.RolControlador;
+import Controlador.Controladores.UsuarioControlador;
 import Modelo.Entidades.Usuario;
 import Vista.GestionUsuario.Rol.ModelsAdapter.RolComboModel;
 import Vista.GestionUsuario.Usuario.ModelsAdapter.UsuarioTableModel;

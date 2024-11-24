@@ -1,6 +1,6 @@
 package Vista.GestionUsuario.Rol.Form;
 
-import Controlador.RolControlador;
+import Controlador.Controladores.RolControlador;
 import Modelo.Entidades.Rol;
 import Vista.GestionUsuario.Rol.ModelsAdapter.RolTableModel;
 import javax.swing.ImageIcon;

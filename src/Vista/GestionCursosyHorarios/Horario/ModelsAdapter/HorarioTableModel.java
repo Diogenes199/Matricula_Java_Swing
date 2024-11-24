@@ -1,7 +1,7 @@
-package Vista.GestionCursosyHorarios.Modalidad.ModelsAdapter;
+package Vista.GestionCursosyHorarios.Horario.ModelsAdapter;
 
-import Controlador.Controladores.ModalidadControlador;
-import Modelo.Entidades.Modalidad;
+import Controlador.Controladores.HorarioControlador;
+import Modelo.Entidades.Horario;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JTable;
@@ -10,12 +10,13 @@ import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableColumn;
 
-public class ModalidadTableModel extends AbstractTableModel {
 
-    private final ModalidadControlador Controller;
-    private List<Modalidad> getAll;
+public class HorarioTableModel extends AbstractTableModel {
 
-    public ModalidadTableModel(ModalidadControlador Controller) {
+    private final HorarioControlador Controller;
+    private List<Horario> getAll;
+
+    public HorarioTableModel(HorarioControlador Controller) {
         this.Controller = Controller;
         this.getAll();
     }
@@ -25,27 +26,34 @@ public class ModalidadTableModel extends AbstractTableModel {
     }
     
     public void getOne(String id){
-       Modalidad getIdCurse = Controller.getOne(id);
-       if(getIdCurse!=null){
+       Horario getId = Controller.getOne(id);
+       if(getId!=null){
         getAll = new ArrayList<>();
-        getAll.add(getIdCurse);
+        getAll.add(getId);
        }else{
        getAll = null;
        }
     }
     
-      public void getModalidades(String curse) {
-        getAll = Controller.getModalidades(curse);
+      public void getHorarios(String hora) {
+        getAll = Controller.getHorarios(hora);
     }
     
     @Override
     public String getColumnName(int colum) {
         if(getAll != null){
-            return switch (colum) {
-                case 0 -> "CODIGO";
-                case 1 -> "MODALIDAD";
-                default -> "[no]";
-            };
+        switch (colum) {
+            case 0:
+                return "CODIGO";
+            case 1:
+                return "DIA";
+            case 2:
+                return "HORA INICIO";
+            case 3:
+                return "HORA FINAL";            
+            default:
+                return "[no]";
+        }
         }else{
             return "MESSAGE";
         }
@@ -63,7 +71,7 @@ public class ModalidadTableModel extends AbstractTableModel {
     @Override
     public int getColumnCount() {
          if(getAll!=null){
-        return 2;
+        return 4;
         }else{
             return 1;
         }
@@ -73,14 +81,21 @@ public class ModalidadTableModel extends AbstractTableModel {
     public Object getValueAt(int i, int i1) {
        
       if(getAll !=null){
-           Modalidad modalidad = getAll.get(i);
-          return switch (i1) {
-              case 0 -> modalidad.getId()!=null?modalidad.getId():"";
-              case 1 -> modalidad.getDescripcion()!=null?modalidad.getDescripcion():"";
-              default -> "";
-          };
+           Horario horario = getAll.get(i);
+        switch (i1) {
+            case 0:
+                return horario.getId()!=null?horario.getId():"";
+            case 1:
+                return horario.getDia()!=null?horario.getDia():"";
+            case 2:
+                return horario.getHoraInicio();
+            case 3:
+                return horario.getHoraFin();
+            default:
+                return "";
+        }
       }else{
-          return "MODALIDAD NO ENCONTRADO";
+          return "HORARIO NO ENCONTRADO";
       }
     }
     
@@ -119,3 +134,4 @@ public class ModalidadTableModel extends AbstractTableModel {
         }
     }
 }
+    
