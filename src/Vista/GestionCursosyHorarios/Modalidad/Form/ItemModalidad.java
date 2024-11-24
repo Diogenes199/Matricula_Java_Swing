@@ -1,35 +1,37 @@
-package Vista.GestionAcademico.TipoDocumento;
+package Vista.GestionCursosyHorarios.Modalidad.Form;
 
-import Controlador.TipoDocumentoControlador;
-import Modelo.Entidades.TipoDocumento;
-import Vista.GestionAcademico.TipoDocumento.ModelsAdapter.TipoDocumentoTableModel;
+import Controlador.ModalidadControlador;
+import Modelo.Entidades.Modalidad;
+import Vista.GestionCursosyHorarios.Modalidad.ModelsAdapter.ModalidadTableModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-public class ItemTipoDocumento extends javax.swing.JInternalFrame {
+public class ItemModalidad extends javax.swing.JInternalFrame {
 
-    private TipoDocumentoControlador controlador = new TipoDocumentoControlador();
-    private TipoDocumentoTableModel tableModel;
+    private ModalidadControlador controlador = new ModalidadControlador();
+    private ModalidadTableModel tableModel;
+
     private int valor;
-
-    public ItemTipoDocumento() {
+    
+    public ItemModalidad() {
         initComponents();
-        tableModel = new TipoDocumentoTableModel(controlador);
-        tblTipoDocumento.setModel(tableModel);
-        tableModel.findAll();
-        panelTipoDocumento.setEditable(false);
-        panelTipoDocumento.setTipoDocumento(null);
+        tableModel = new ModalidadTableModel(controlador);
+        tblModalidad.setModel(tableModel);
+        ObtenerTodos();
+        panelModalidad.setEditable(false);
+        panelModalidad.setModalidad(null);
         rbTodos.setSelected(true);
+        txt_Buscado.requestFocus();
         valor = 0;
 
-        this.tblTipoDocumento.getSelectionModel().addListSelectionListener(e
+        this.tblModalidad.getSelectionModel().addListSelectionListener(e
                 -> {
-            activarBotonesCRUD(tblTipoDocumento.getSelectedRow() != -1);
-            txt_Buscado.setText("");
+            activarBotonesCRUD(tblModalidad.getSelectedRow() != -1 && tblModalidad.getColumnCount() > 1);
+            txt_Buscado.setText(tblModalidad.getColumnCount() > 1 ? "" : txt_Buscado.getText());
         });
     }
-
-    private void activarBotonesCRUD(boolean activo) {
+    
+     private void activarBotonesCRUD(boolean activo) {
         this.btn_Borrar.setEnabled(activo);
         this.btn_Editar.setEnabled(activo);
         this.btn_Cancelar.setEnabled(activo);
@@ -39,16 +41,19 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
     private void activarBotonesGuardar(boolean activo) {
         this.btn_Cancelar.setEnabled(activo);
         this.btn_Guardar.setEnabled(activo);
+        this.btn_Borrar.setEnabled(!activo);
 
     }
 
     private void ObtenerTodos() {
-        tableModel.findAll();
+        tableModel.getAll();
+        tableModel.centrarContenido(tblModalidad);
+        tableModel.ajustarTamanioColumnas(tblModalidad);
         tableModel.fireTableDataChanged();
     }
 
-    private TipoDocumento getTipoDocumentoSelection() {
-        String id = tblTipoDocumento.getValueAt(tblTipoDocumento.getSelectedRow(), 0).toString();
+    private Modalidad getSelection() {
+        String id = tblModalidad.getValueAt(tblModalidad.getSelectedRow(), 0).toString();
         return controlador.getOne(id);
     }
 
@@ -56,28 +61,84 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        btn_Cancelar = new javax.swing.JButton();
+        btn_Nuevo = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
         btn_Borrar = new javax.swing.JButton();
         btn_Editar = new javax.swing.JButton();
         btn_Guardar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        btn_Cancelar = new javax.swing.JButton();
-        btn_Nuevo = new javax.swing.JButton();
-        panelTipoDocumento = new Vista.GestionAcademico.TipoDocumento.PanelTipoDocumento();
-        jPanel3 = new javax.swing.JPanel();
+        panelModalidad = new Vista.GestionCursosyHorarios.Modalidad.Form.PanelModalidad();
+        jPanel4 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblTipoDocumento = new javax.swing.JTable();
+        tblModalidad = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         btn_pdf = new javax.swing.JButton();
         btn_excel = new javax.swing.JButton();
         btn_txt = new javax.swing.JButton();
-        btn_Close = new javax.swing.JButton();
-        jPanel4 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txt_Buscado = new javax.swing.JTextField();
-        rbRol = new javax.swing.JRadioButton();
+        rbCodigo = new javax.swing.JRadioButton();
         btn_Buscar = new javax.swing.JButton();
         rbTodos = new javax.swing.JRadioButton();
+        rbModalidad = new javax.swing.JRadioButton();
+
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), "Dato", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Sans Serif", 1, 13))); // NOI18N
+
+        jPanel2.setBackground(new java.awt.Color(204, 204, 204));
+
+        btn_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Crud/cancel.png"))); // NOI18N
+        btn_Cancelar.setText("Cancelar");
+        btn_Cancelar.setBorderPainted(false);
+        btn_Cancelar.setContentAreaFilled(false);
+        btn_Cancelar.setEnabled(false);
+        btn_Cancelar.setFocusable(false);
+        btn_Cancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Cancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CancelarActionPerformed(evt);
+            }
+        });
+
+        btn_Nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Crud/new.png"))); // NOI18N
+        btn_Nuevo.setText("Nuevo");
+        btn_Nuevo.setBorderPainted(false);
+        btn_Nuevo.setContentAreaFilled(false);
+        btn_Nuevo.setFocusable(false);
+        btn_Nuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Nuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Nuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_NuevoActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(btn_Nuevo))
+                    .addComponent(btn_Cancelar))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btn_Cancelar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_Nuevo)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         btn_Borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Crud/clear.png"))); // NOI18N
         btn_Borrar.setText("Borrar");
@@ -121,11 +182,11 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btn_Guardar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -134,70 +195,43 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
                 .addComponent(btn_Borrar)
                 .addContainerGap())
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btn_Borrar)
                     .addComponent(btn_Editar)
                     .addComponent(btn_Guardar))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        btn_Cancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Crud/cancel.png"))); // NOI18N
-        btn_Cancelar.setText("Cancelar");
-        btn_Cancelar.setBorderPainted(false);
-        btn_Cancelar.setContentAreaFilled(false);
-        btn_Cancelar.setEnabled(false);
-        btn_Cancelar.setFocusable(false);
-        btn_Cancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_Cancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_Cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_CancelarActionPerformed(evt);
-            }
-        });
-
-        btn_Nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Crud/new.png"))); // NOI18N
-        btn_Nuevo.setText("Nuevo");
-        btn_Nuevo.setBorderPainted(false);
-        btn_Nuevo.setContentAreaFilled(false);
-        btn_Nuevo.setFocusable(false);
-        btn_Nuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_Nuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_Nuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_NuevoActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(17, Short.MAX_VALUE)
-                .addComponent(panelTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(panelModalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_Cancelar, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btn_Nuevo, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(btn_Cancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_Nuevo)
-                .addContainerGap())
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(panelTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelModalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        tblTipoDocumento.setModel(new javax.swing.table.DefaultTableModel(
+        tblModalidad.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -208,7 +242,7 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblTipoDocumento);
+        jScrollPane1.setViewportView(tblModalidad);
 
         jPanel5.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -266,35 +300,22 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
                 .addGap(7, 7, 7))
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-
-        btn_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Crud/new.png"))); // NOI18N
-        btn_Close.setText("Salir");
-        btn_Close.setBorderPainted(false);
-        btn_Close.setContentAreaFilled(false);
-        btn_Close.setFocusable(false);
-        btn_Close.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_Close.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_Close.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_CloseActionPerformed(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
         jLabel2.setText("Buscar:");
@@ -305,11 +326,12 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
             }
         });
 
-        rbRol.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
-        rbRol.setText("Documento");
-        rbRol.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup1.add(rbCodigo);
+        rbCodigo.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
+        rbCodigo.setText("Codigo");
+        rbCodigo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbRolActionPerformed(evt);
+                rbCodigoActionPerformed(evt);
             }
         });
 
@@ -320,6 +342,7 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
             }
         });
 
+        buttonGroup1.add(rbTodos);
         rbTodos.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
         rbTodos.setText("Todos");
         rbTodos.addActionListener(new java.awt.event.ActionListener() {
@@ -328,40 +351,51 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+        buttonGroup1.add(rbModalidad);
+        rbModalidad.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
+        rbModalidad.setText("Modalidad");
+        rbModalidad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbModalidadActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txt_Buscado, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addComponent(rbRol, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(rbTodos)
-                        .addGap(139, 139, 139)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btn_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txt_Buscado, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(83, 83, 83)
+                        .addComponent(rbCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(rbModalidad)
+                        .addGap(50, 50, 50)
+                        .addComponent(rbTodos)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap(14, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btn_Buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(txt_Buscado)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbRol)
-                    .addComponent(rbTodos)))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(rbCodigo)
+                    .addComponent(rbTodos)
+                    .addComponent(rbModalidad)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -369,63 +403,72 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(94, 94, 94)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btn_Close))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(74, 74, 74)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(34, 34, 34)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(btn_Close)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 6, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BorrarActionPerformed
-        if (JOptionPane.showConfirmDialog(null, "¿Seguro que quiere borrar este Rol?", "BORRAR ROL", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+    private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
+        panelModalidad.setModalidad(null);
+        panelModalidad.dataLoad();
+        activarBotonesGuardar(false);
+        activarBotonesCRUD(false);
+        tblModalidad.clearSelection();
+        panelModalidad.setEditable(false);
+        btn_Nuevo.setEnabled(true);
+        txt_Buscado.setEnabled(true);
+        txt_Buscado.requestFocus();
+    }//GEN-LAST:event_btn_CancelarActionPerformed
 
-            String id = tblTipoDocumento.getValueAt(tblTipoDocumento.getSelectedRow(), 0).toString();
+    private void btn_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NuevoActionPerformed
+
+        panelModalidad.setEditable(true);
+        panelModalidad.setModalidad(null);
+        panelModalidad.dataLoad();
+        panelModalidad.setCod(controlador.newCode());
+        activarBotonesCRUD(false);
+        btn_Nuevo.setEnabled(false);
+        activarBotonesGuardar(true);
+    }//GEN-LAST:event_btn_NuevoActionPerformed
+
+    private void btn_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BorrarActionPerformed
+        if (JOptionPane.showConfirmDialog(null, "¿Seguro que quiere borrar el Curso (" + tblModalidad.getValueAt(tblModalidad.getSelectedRow(), 1).toString() + ")?", "BORRAR CURSO ", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+            String id = tblModalidad.getValueAt(tblModalidad.getSelectedRow(), 0).toString();
             controlador.delete(id);
             ObtenerTodos();
-            tblTipoDocumento.clearSelection();
+            tblModalidad.clearSelection();
 
             activarBotonesCRUD(false);
             activarBotonesGuardar(false);
-
         }
     }//GEN-LAST:event_btn_BorrarActionPerformed
 
     private void btn_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditarActionPerformed
 
         activarBotonesGuardar(true);
-        panelTipoDocumento.setEditable(true);
-        panelTipoDocumento.setTipoDocumento(getTipoDocumentoSelection());
-        panelTipoDocumento.dataLoad();
+        panelModalidad.setEditable(true);
+        panelModalidad.setModalidad(getSelection());
+        panelModalidad.dataLoad();
+        txt_Buscado.setEnabled(false);
     }//GEN-LAST:event_btn_EditarActionPerformed
 
     private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
@@ -433,16 +476,16 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
         String ruta = "src/Logos/Message/";
         String message = "";
         boolean estado = false;
-        panelTipoDocumento.dataSave();
-        TipoDocumento existe = controlador.getOne(panelTipoDocumento.getCod());
-        TipoDocumento documento = panelTipoDocumento.getTipoDocumento();
+        panelModalidad.dataSave();
+        Modalidad existe = controlador.getOne(panelModalidad.getCod());
+        Modalidad modalidad = panelModalidad.getModalidad();
         if (existe != null) {
-            estado = controlador.update(documento);
+            estado = controlador.update(modalidad);
             message = estado ? "Usuario Actualizado con exito" : "Espera (*)";
 
         }
         if (existe == null) {
-            estado = controlador.create(documento);
+            estado = controlador.create(modalidad);
             message = estado ? "Usuario Insertado con exito" : "Rellenar los espacios requeridos (*)";
         }
 
@@ -451,35 +494,15 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
 
         JOptionPane.showMessageDialog(null, message, "Message", JOptionPane.INFORMATION_MESSAGE, icon);
         if (estado) {
-            panelTipoDocumento.setTipoDocumento(null);
-            panelTipoDocumento.setEditable(false);
-            panelTipoDocumento.dataLoad();
+            panelModalidad.setModalidad(null);
+            panelModalidad.setEditable(false);
+            panelModalidad.dataLoad();
             ObtenerTodos();
-            activarBotonesCRUD(false);
             activarBotonesGuardar(false);
+            activarBotonesCRUD(false);
+            txt_Buscado.setEnabled(estado);
         }
     }//GEN-LAST:event_btn_GuardarActionPerformed
-
-    private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
-        panelTipoDocumento.setTipoDocumento(null);
-        panelTipoDocumento.dataLoad();
-        activarBotonesCRUD(false);
-        activarBotonesGuardar(false);
-        tblTipoDocumento.clearSelection();
-        panelTipoDocumento.setEditable(false);
-        btn_Nuevo.setEnabled(true);
-    }//GEN-LAST:event_btn_CancelarActionPerformed
-
-    private void btn_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NuevoActionPerformed
-
-        panelTipoDocumento.setEditable(true);
-        panelTipoDocumento.setTipoDocumento(null);
-        panelTipoDocumento.dataLoad();
-        panelTipoDocumento.setCod(controlador.newCode());
-        activarBotonesCRUD(false);
-        btn_Nuevo.setEnabled(false);
-        activarBotonesGuardar(true);
-    }//GEN-LAST:event_btn_NuevoActionPerformed
 
     private void btn_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pdfActionPerformed
         /*
@@ -490,7 +513,7 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
         } catch (DocumentException | FileNotFoundException ex) {
             Logger.getLogger(FrmEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }
-         */
+        */
     }//GEN-LAST:event_btn_pdfActionPerformed
 
     private void btn_excelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excelActionPerformed
@@ -501,7 +524,7 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
         } catch (IOException ex) {
             Utilidades.Mensaje("ERROR","No se creo el excel",0);
         }
-         */
+        */
     }//GEN-LAST:event_btn_excelActionPerformed
 
     private void btn_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_txtActionPerformed
@@ -512,69 +535,73 @@ public class ItemTipoDocumento extends javax.swing.JInternalFrame {
         } catch (IOException ex) {
             Utilidades.Mensaje("ERROR","Errorl",0);
         }
-         */
+        */
     }//GEN-LAST:event_btn_txtActionPerformed
 
-    private void btn_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CloseActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_btn_CloseActionPerformed
-
     private void txt_BuscadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_BuscadoMousePressed
-        tblTipoDocumento.clearSelection();
+        if (txt_Buscado.isEnabled()) {
+            tblModalidad.clearSelection();
+        }
     }//GEN-LAST:event_txt_BuscadoMousePressed
 
-    private void rbRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRolActionPerformed
-        valor = 2;
-    }//GEN-LAST:event_rbRolActionPerformed
+    private void rbCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCodigoActionPerformed
+        valor = 1;
+    }//GEN-LAST:event_rbCodigoActionPerformed
 
     private void btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarActionPerformed
+        if (txt_Buscado.isEnabled()) {
+            String textoBuscado = txt_Buscado.getText().trim();
+            ModalidadTableModel tablita = new ModalidadTableModel(controlador);
+            switch (valor) {
+                case 0 -> tablita.getAll();
+                case 1 -> tablita.getOne(textoBuscado);
+                case 2 -> tablita.getModalidades(textoBuscado);
+                default -> {
+                }
+            }
 
-        String textoBuscado = txt_Buscado.getText().trim();
-        TipoDocumentoTableModel tablita = new TipoDocumentoTableModel(controlador);
-        switch (valor) {
-            case 0:
-                tablita.findAll();
-                break;
-            case 1:
-                tablita.finByIds(textoBuscado);
-                break;
-
-            default:
-                break;
+            tblModalidad.setModel(tablita);
+            tablita.centrarContenido(tblModalidad);
         }
-        tblTipoDocumento.setModel(tablita);
     }//GEN-LAST:event_btn_BuscarActionPerformed
 
     private void rbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTodosActionPerformed
         valor = 0;
+        tblModalidad.setModel(tableModel);
         ObtenerTodos();
         txt_Buscado.setText("");
         txt_Buscado.requestFocus();
     }//GEN-LAST:event_rbTodosActionPerformed
+
+    private void rbModalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbModalidadActionPerformed
+        valor = 2;
+    }//GEN-LAST:event_rbModalidadActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Borrar;
     private javax.swing.JButton btn_Buscar;
     private javax.swing.JButton btn_Cancelar;
-    private javax.swing.JButton btn_Close;
     private javax.swing.JButton btn_Editar;
     private javax.swing.JButton btn_Guardar;
     private javax.swing.JButton btn_Nuevo;
     private javax.swing.JButton btn_excel;
     private javax.swing.JButton btn_pdf;
     private javax.swing.JButton btn_txt;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private Vista.GestionAcademico.TipoDocumento.PanelTipoDocumento panelTipoDocumento;
-    private javax.swing.JRadioButton rbRol;
+    private Vista.GestionCursosyHorarios.Modalidad.Form.PanelModalidad panelModalidad;
+    private javax.swing.JRadioButton rbCodigo;
+    private javax.swing.JRadioButton rbModalidad;
     private javax.swing.JRadioButton rbTodos;
-    private javax.swing.JTable tblTipoDocumento;
+    private javax.swing.JTable tblModalidad;
     private javax.swing.JTextField txt_Buscado;
     // End of variables declaration//GEN-END:variables
 }

@@ -1,8 +1,10 @@
 package Vista.Menu;
-import Vista.GestionAcademico.TipoDocumento.ItemTipoDocumento;
-import Vista.GestionCursosyHorarios.Curso.ItemCurso;
-import Vista.GestionUsuario.Rol.ItemRol;
-import Vista.GestionUsuario.Usuario.ItemUsuario;
+import Vista.GestionAcademico.TipoDocumento.Form.ItemTipoDocumento;
+import Vista.GestionCursosyHorarios.Curso.Form.ItemCurso;
+import Vista.GestionCursosyHorarios.Horario.Form.ItemHorario;
+import Vista.GestionCursosyHorarios.Modalidad.Form.ItemModalidad;
+import Vista.GestionUsuario.Rol.Form.ItemRol;
+import Vista.GestionUsuario.Usuario.Form.ItemUsuario;
 import Vista.Personalizado.ImageDesktop;
 import javax.swing.*;
 
@@ -15,6 +17,27 @@ public class MenuForm extends JFrame {
         this.EscritorioPane.setBorder(new ImageDesktop());
         this.setExtendedState(MenuForm.MAXIMIZED_BOTH);
     }
+    
+    
+    private void  Viewinstance(JInternalFrame internal){
+    for (JInternalFrame existingFrame : EscritorioPane.getAllFrames()) {
+        if (existingFrame.getClass().equals(internal.getClass())) {
+            existingFrame.dispose();
+            break;
+        }
+    }
+
+    EscritorioPane.add(internal);
+    EscritorioPane.revalidate();
+    EscritorioPane.repaint();
+
+    int x = (EscritorioPane.getWidth() - internal.getWidth()) / 2;
+    int y = (EscritorioPane.getHeight() - internal.getHeight()) / 2;
+    internal.setLocation(x, y);
+
+    internal.setVisible(true);
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -142,6 +165,11 @@ public class MenuForm extends JFrame {
         itemHorario.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         itemHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/CursoyHorario/horario.png"))); // NOI18N
         itemHorario.setText("Horario");
+        itemHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemHorarioActionPerformed(evt);
+            }
+        });
         menuCursoHora.add(itemHorario);
 
         jMenuBar1.add(menuCursoHora);
@@ -210,31 +238,12 @@ public class MenuForm extends JFrame {
       Viewinstance(new ItemUsuario());
     }//GEN-LAST:event_itemUsuarioActionPerformed
 
-    private void  Viewinstance(JInternalFrame internal){
-    for (JInternalFrame existingFrame : EscritorioPane.getAllFrames()) {
-        if (existingFrame.getClass().equals(internal.getClass())) {
-            existingFrame.dispose();
-            break;
-        }
-    }
-
-    EscritorioPane.add(internal);
-    EscritorioPane.revalidate();
-    EscritorioPane.repaint();
-
-    int x = (EscritorioPane.getWidth() - internal.getWidth()) / 2;
-    int y = (EscritorioPane.getHeight() - internal.getHeight()) / 2;
-    internal.setLocation(x, y);
-
-    internal.setVisible(true);
-    }
-    
     private void itemRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRolActionPerformed
         Viewinstance(new ItemRol());
     }//GEN-LAST:event_itemRolActionPerformed
 
     private void itemModalidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemModalidadActionPerformed
-        
+        Viewinstance(new ItemModalidad());
     }//GEN-LAST:event_itemModalidadActionPerformed
 
     private void itemDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemDocumentoActionPerformed
@@ -244,6 +253,10 @@ public class MenuForm extends JFrame {
     private void itemCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCursoActionPerformed
        Viewinstance(new ItemCurso());
     }//GEN-LAST:event_itemCursoActionPerformed
+
+    private void itemHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemHorarioActionPerformed
+         Viewinstance(new ItemHorario());
+    }//GEN-LAST:event_itemHorarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

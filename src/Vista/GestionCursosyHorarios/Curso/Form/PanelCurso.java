@@ -1,4 +1,4 @@
-package Vista.GestionCursosyHorarios.Curso;
+package Vista.GestionCursosyHorarios.Curso.Form;
 
 import Modelo.Entidades.Curso;
 

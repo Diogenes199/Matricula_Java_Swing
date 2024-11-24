@@ -1,4 +1,4 @@
-package Vista.GestionUsuario.Usuario;
+package Vista.GestionUsuario.Usuario.Form;
 
 import Controlador.RolControlador;
 import Modelo.Entidades.Rol;

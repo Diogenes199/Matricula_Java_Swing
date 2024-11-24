@@ -1,4 +1,4 @@
-package Vista.GestionAcademico.TipoDocumento;
+package Vista.GestionAcademico.TipoDocumento.Form;
 
 import Modelo.Entidades.TipoDocumento;
 

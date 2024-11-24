@@ -1,40 +1,61 @@
-package Vista.GestionUsuario.Rol;
+package Vista.GestionAcademico.TipoDocumento.Form;
 
-import Controlador.RolControlador;
-import Modelo.Entidades.Rol;
-import Vista.GestionUsuario.Rol.ModelsAdapter.RolTableModel;
+import Controlador.TipoDocumentoControlador;
+import Modelo.Entidades.TipoDocumento;
+import Vista.GestionAcademico.TipoDocumento.ModelsAdapter.TipoDocumentoTableModel;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-public class ItemRol extends javax.swing.JInternalFrame {
+public class ItemTipoDocumento extends javax.swing.JInternalFrame {
 
+    private TipoDocumentoControlador controlador = new TipoDocumentoControlador();
+    private TipoDocumentoTableModel tableModel;
+    private int valor;
 
-    private RolControlador controladorRol = new RolControlador();
-    private RolTableModel tableModel; 
-    public ItemRol() {
+    public ItemTipoDocumento() {
         initComponents();
-        tableModel = new RolTableModel(controladorRol);
-        tblRol.setModel(tableModel);
+        tableModel = new TipoDocumentoTableModel(controlador);
+        tblTipoDocumento.setModel(tableModel);
         tableModel.findAll();
-        panelRol.setEditable(false);
-        panelRol.setRol(null);
+        panelTipoDocumento.setEditable(false);
+        panelTipoDocumento.setTipoDocumento(null);
         rbTodos.setSelected(true);
         valor = 0;
 
-    this.tblRol.getSelectionModel().addListSelectionListener(e->
-            {
-               activarBotonesCRUD(tblRol.getSelectedRow()!=-1) ;
-               txt_Buscado.setText("");
-            });
+        this.tblTipoDocumento.getSelectionModel().addListSelectionListener(e
+                -> {
+            activarBotonesCRUD(tblTipoDocumento.getSelectedRow() != -1);
+            txt_Buscado.setText("");
+        });
     }
 
+    private void activarBotonesCRUD(boolean activo) {
+        this.btn_Borrar.setEnabled(activo);
+        this.btn_Editar.setEnabled(activo);
+        this.btn_Cancelar.setEnabled(activo);
+        this.btn_Nuevo.setEnabled(!activo);
+    }
+
+    private void activarBotonesGuardar(boolean activo) {
+        this.btn_Cancelar.setEnabled(activo);
+        this.btn_Guardar.setEnabled(activo);
+
+    }
+
+    private void ObtenerTodos() {
+        tableModel.findAll();
+        tableModel.fireTableDataChanged();
+    }
+
+    private TipoDocumento getTipoDocumentoSelection() {
+        String id = tblTipoDocumento.getValueAt(tblTipoDocumento.getSelectedRow(), 0).toString();
+        return controlador.getOne(id);
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        panelRol = new Vista.GestionUsuario.Rol.PanelRol();
         jPanel2 = new javax.swing.JPanel();
         btn_Borrar = new javax.swing.JButton();
         btn_Editar = new javax.swing.JButton();
@@ -42,21 +63,21 @@ public class ItemRol extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         btn_Cancelar = new javax.swing.JButton();
         btn_Nuevo = new javax.swing.JButton();
+        panelTipoDocumento = new Vista.GestionAcademico.TipoDocumento.Form.PanelTipoDocumento();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblRol = new javax.swing.JTable();
+        tblTipoDocumento = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         btn_pdf = new javax.swing.JButton();
         btn_excel = new javax.swing.JButton();
         btn_txt = new javax.swing.JButton();
+        btn_Close = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         txt_Buscado = new javax.swing.JTextField();
-        rbCod = new javax.swing.JRadioButton();
         rbRol = new javax.swing.JRadioButton();
         btn_Buscar = new javax.swing.JButton();
         rbTodos = new javax.swing.JRadioButton();
-        btn_Close = new javax.swing.JButton();
 
         btn_Borrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Crud/clear.png"))); // NOI18N
         btn_Borrar.setText("Borrar");
@@ -155,23 +176,28 @@ public class ItemRol extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(17, Short.MAX_VALUE)
+                .addComponent(panelTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(btn_Nuevo))
-                    .addComponent(btn_Cancelar))
-                .addContainerGap(15, Short.MAX_VALUE))
+                    .addComponent(btn_Cancelar, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btn_Nuevo, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(btn_Cancelar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                .addComponent(btn_Nuevo))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btn_Nuevo)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelTipoDocumento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        tblRol.setModel(new javax.swing.table.DefaultTableModel(
+        tblTipoDocumento.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -182,7 +208,7 @@ public class ItemRol extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(tblRol);
+        jScrollPane1.setViewportView(tblTipoDocumento);
 
         jPanel5.setBackground(new java.awt.Color(153, 153, 153));
 
@@ -257,6 +283,19 @@ public class ItemRol extends javax.swing.JInternalFrame {
             .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
+        btn_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Crud/new.png"))); // NOI18N
+        btn_Close.setText("Salir");
+        btn_Close.setBorderPainted(false);
+        btn_Close.setContentAreaFilled(false);
+        btn_Close.setFocusable(false);
+        btn_Close.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Close.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Close.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CloseActionPerformed(evt);
+            }
+        });
+
         jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
         jLabel2.setText("Buscar:");
 
@@ -266,18 +305,8 @@ public class ItemRol extends javax.swing.JInternalFrame {
             }
         });
 
-        buttonGroup1.add(rbCod);
-        rbCod.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
-        rbCod.setText("Codigo");
-        rbCod.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbCodActionPerformed(evt);
-            }
-        });
-
-        buttonGroup1.add(rbRol);
         rbRol.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
-        rbRol.setText("Rol");
+        rbRol.setText("Documento");
         rbRol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbRolActionPerformed(evt);
@@ -291,7 +320,6 @@ public class ItemRol extends javax.swing.JInternalFrame {
             }
         });
 
-        buttonGroup1.add(rbTodos);
         rbTodos.setFont(new java.awt.Font("Times New Roman", 1, 13)); // NOI18N
         rbTodos.setText("Todos");
         rbTodos.addActionListener(new java.awt.event.ActionListener() {
@@ -306,16 +334,15 @@ public class ItemRol extends javax.swing.JInternalFrame {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(25, 25, 25)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txt_Buscado, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(rbCod)
-                        .addGap(18, 18, 18)
-                        .addComponent(rbRol, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(58, 58, 58)
+                        .addComponent(rbRol, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(rbTodos)
                         .addGap(139, 139, 139)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -333,23 +360,9 @@ public class ItemRol extends javax.swing.JInternalFrame {
                         .addComponent(txt_Buscado)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(rbCod)
                     .addComponent(rbRol)
                     .addComponent(rbTodos)))
         );
-
-        btn_Close.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Crud/new.png"))); // NOI18N
-        btn_Close.setText("Salir");
-        btn_Close.setBorderPainted(false);
-        btn_Close.setContentAreaFilled(false);
-        btn_Close.setFocusable(false);
-        btn_Close.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_Close.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_Close.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_CloseActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -357,44 +370,35 @@ public class ItemRol extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(52, 52, 52)
-                        .addComponent(panelRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btn_Close))
-                    .addGroup(layout.createSequentialGroup()
+                        .addGap(94, 94, 94)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(94, 94, 94)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btn_Close))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(74, 74, 74)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(panelRol, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGap(23, 23, 23)
-                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
+                        .addGap(29, 29, 29)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
                         .addComponent(btn_Close)))
-                .addGap(12, 12, 12)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -402,52 +406,26 @@ public class ItemRol extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
-        panelRol.setRol(null);
-        panelRol.dataLoad();
-        activarBotonesCRUD(false);
-        activarBotonesGuardar(false);
-        tblRol.clearSelection();
-        panelRol.setEditable(false);
-        btn_Nuevo.setEnabled(true);
-    }//GEN-LAST:event_btn_CancelarActionPerformed
-
-    private void btn_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NuevoActionPerformed
-
-       
-        panelRol.setEditable(true);
-        panelRol.setRol(null);
-        panelRol.dataLoad();
-        panelRol.setCod(controladorRol.newCode());
-        activarBotonesCRUD(false);
-        btn_Nuevo.setEnabled(false);
-         activarBotonesGuardar(true);
-
-    }//GEN-LAST:event_btn_NuevoActionPerformed
-
     private void btn_BorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BorrarActionPerformed
-        if(JOptionPane.showConfirmDialog(null,"¿Seguro que quiere borrar este Rol?","BORRAR ROL",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION)
-        {
+        if (JOptionPane.showConfirmDialog(null, "¿Seguro que quiere borrar este Rol?", "BORRAR ROL", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
 
-            String id = tblRol.getValueAt(tblRol.getSelectedRow(),0).toString();
-            controladorRol.delete(id);
+            String id = tblTipoDocumento.getValueAt(tblTipoDocumento.getSelectedRow(), 0).toString();
+            controlador.delete(id);
             ObtenerTodos();
-            tblRol.clearSelection();
+            tblTipoDocumento.clearSelection();
 
             activarBotonesCRUD(false);
             activarBotonesGuardar(false);
 
         }
-
     }//GEN-LAST:event_btn_BorrarActionPerformed
 
     private void btn_EditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_EditarActionPerformed
 
         activarBotonesGuardar(true);
-        panelRol.setEditable(true);
-        panelRol.setRol(getRolSelection());
-        panelRol.dataLoad();
-
+        panelTipoDocumento.setEditable(true);
+        panelTipoDocumento.setTipoDocumento(getTipoDocumentoSelection());
+        panelTipoDocumento.dataLoad();
     }//GEN-LAST:event_btn_EditarActionPerformed
 
     private void btn_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GuardarActionPerformed
@@ -455,67 +433,53 @@ public class ItemRol extends javax.swing.JInternalFrame {
         String ruta = "src/Logos/Message/";
         String message = "";
         boolean estado = false;
-        panelRol.dataSave();
-        Rol existe = controladorRol.getOne(panelRol.getCod());
-        Rol  rol= panelRol.getRol();
-        if(existe!=null )
-        {
-            estado = controladorRol.update(rol);
-            message = estado?"Usuario Actualizado con exito":"Espera (*)";
+        panelTipoDocumento.dataSave();
+        TipoDocumento existe = controlador.getOne(panelTipoDocumento.getCod());
+        TipoDocumento documento = panelTipoDocumento.getTipoDocumento();
+        if (existe != null) {
+            estado = controlador.update(documento);
+            message = estado ? "Usuario Actualizado con exito" : "Espera (*)";
 
-        }if(existe == null){
-            estado = controladorRol.create(rol);
-            message = estado?"Usuario Insertado con exito":"Rellenar los espacios requeridos (*)";
+        }
+        if (existe == null) {
+            estado = controlador.create(documento);
+            message = estado ? "Usuario Insertado con exito" : "Rellenar los espacios requeridos (*)";
         }
 
-
-        String image =  estado?"exito.png":"error.png";
+        String image = estado ? "exito.png" : "error.png";
         ImageIcon icon = new ImageIcon(ruta + image);
 
         JOptionPane.showMessageDialog(null, message, "Message", JOptionPane.INFORMATION_MESSAGE, icon);
-        if(estado){
-            panelRol.setRol(null);
-            panelRol.setEditable(false);
-            panelRol.dataLoad();
+        if (estado) {
+            panelTipoDocumento.setTipoDocumento(null);
+            panelTipoDocumento.setEditable(false);
+            panelTipoDocumento.dataLoad();
             ObtenerTodos();
             activarBotonesCRUD(false);
             activarBotonesGuardar(false);
         }
-
     }//GEN-LAST:event_btn_GuardarActionPerformed
-private int valor;
-    private void txt_BuscadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_BuscadoMousePressed
-        tblRol.clearSelection();
-    }//GEN-LAST:event_txt_BuscadoMousePressed
 
-    private void rbCodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCodActionPerformed
-        valor=1;
-    }//GEN-LAST:event_rbCodActionPerformed
+    private void btn_CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CancelarActionPerformed
+        panelTipoDocumento.setTipoDocumento(null);
+        panelTipoDocumento.dataLoad();
+        activarBotonesCRUD(false);
+        activarBotonesGuardar(false);
+        tblTipoDocumento.clearSelection();
+        panelTipoDocumento.setEditable(false);
+        btn_Nuevo.setEnabled(true);
+    }//GEN-LAST:event_btn_CancelarActionPerformed
 
-    private void rbRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRolActionPerformed
-        valor=2;
-    }//GEN-LAST:event_rbRolActionPerformed
+    private void btn_NuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_NuevoActionPerformed
 
-    private void btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarActionPerformed
-
-        String textoBuscado = txt_Buscado.getText().trim();
-       RolTableModel tablita=new RolTableModel(controladorRol);
-        switch (valor) {
-            case 0:
-            tablita.findAll();
-            break;             
-            case 1:
-                tablita.finByIds(textoBuscado);
-                break;
-            case 2:
-            tablita.findByNameAndLastName(textoBuscado);
-            break;            
-            default:
-            break;
-        }
-        tblRol.setModel(tablita);
-
-    }//GEN-LAST:event_btn_BuscarActionPerformed
+        panelTipoDocumento.setEditable(true);
+        panelTipoDocumento.setTipoDocumento(null);
+        panelTipoDocumento.dataLoad();
+        panelTipoDocumento.setCod(controlador.newCode());
+        activarBotonesCRUD(false);
+        btn_Nuevo.setEnabled(false);
+        activarBotonesGuardar(true);
+    }//GEN-LAST:event_btn_NuevoActionPerformed
 
     private void btn_pdfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_pdfActionPerformed
         /*
@@ -526,7 +490,7 @@ private int valor;
         } catch (DocumentException | FileNotFoundException ex) {
             Logger.getLogger(FrmEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }
-        */
+         */
     }//GEN-LAST:event_btn_pdfActionPerformed
 
     private void btn_excelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_excelActionPerformed
@@ -537,7 +501,7 @@ private int valor;
         } catch (IOException ex) {
             Utilidades.Mensaje("ERROR","No se creo el excel",0);
         }
-        */
+         */
     }//GEN-LAST:event_btn_excelActionPerformed
 
     private void btn_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_txtActionPerformed
@@ -548,45 +512,46 @@ private int valor;
         } catch (IOException ex) {
             Utilidades.Mensaje("ERROR","Errorl",0);
         }
-        */
+         */
     }//GEN-LAST:event_btn_txtActionPerformed
 
+    private void btn_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CloseActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btn_CloseActionPerformed
+
+    private void txt_BuscadoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txt_BuscadoMousePressed
+        tblTipoDocumento.clearSelection();
+    }//GEN-LAST:event_txt_BuscadoMousePressed
+
+    private void rbRolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbRolActionPerformed
+        valor = 2;
+    }//GEN-LAST:event_rbRolActionPerformed
+
+    private void btn_BuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_BuscarActionPerformed
+
+        String textoBuscado = txt_Buscado.getText().trim();
+        TipoDocumentoTableModel tablita = new TipoDocumentoTableModel(controlador);
+        switch (valor) {
+            case 0:
+                tablita.findAll();
+                break;
+            case 1:
+                tablita.finByIds(textoBuscado);
+                break;
+
+            default:
+                break;
+        }
+        tblTipoDocumento.setModel(tablita);
+    }//GEN-LAST:event_btn_BuscarActionPerformed
+
     private void rbTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbTodosActionPerformed
-        valor=0;
+        valor = 0;
         ObtenerTodos();
         txt_Buscado.setText("");
         txt_Buscado.requestFocus();
     }//GEN-LAST:event_rbTodosActionPerformed
 
-    private void btn_CloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CloseActionPerformed
-    this.dispose();
-    }//GEN-LAST:event_btn_CloseActionPerformed
-
-       private void activarBotonesCRUD(boolean activo){
-        this.btn_Borrar.setEnabled(activo);
-        this.btn_Editar.setEnabled(activo);
-        this.btn_Cancelar.setEnabled(activo);
-        this.btn_Nuevo.setEnabled(!activo);
-          } 
-      
-    private void activarBotonesGuardar(boolean activo){
-          this.btn_Cancelar.setEnabled(activo);
-          this.btn_Guardar.setEnabled(activo);   
-        
-       }
-    
-     private void ObtenerTodos() {
-      tableModel.findAll();
-      tableModel.fireTableDataChanged();
-    }
- 
-   
-     private Rol getRolSelection() {
-        String id= tblRol.getValueAt(tblRol.getSelectedRow(),0).toString();
-        return controladorRol.getOne(id);
-    }
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_Borrar;
@@ -599,7 +564,6 @@ private int valor;
     private javax.swing.JButton btn_excel;
     private javax.swing.JButton btn_pdf;
     private javax.swing.JButton btn_txt;
-    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -607,11 +571,10 @@ private int valor;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private Vista.GestionUsuario.Rol.PanelRol panelRol;
-    private javax.swing.JRadioButton rbCod;
+    private Vista.GestionAcademico.TipoDocumento.Form.PanelTipoDocumento panelTipoDocumento;
     private javax.swing.JRadioButton rbRol;
     private javax.swing.JRadioButton rbTodos;
-    private javax.swing.JTable tblRol;
+    private javax.swing.JTable tblTipoDocumento;
     private javax.swing.JTextField txt_Buscado;
     // End of variables declaration//GEN-END:variables
 }

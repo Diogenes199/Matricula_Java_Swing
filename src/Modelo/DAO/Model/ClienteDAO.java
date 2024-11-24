@@ -47,6 +47,7 @@ public class ClienteDAO extends BaseDAO implements ICliente {
             + "    tipos_documentos TD  ON TD.id_tipo_documento = C.tipo_documento\n"
             + "INNER JOIN \n"
             + "	roles R ON U.id_rol = R.id_rol";
+    
     private final String GETONE = " WHERE id_cliente = ?";
 
     private final String NEWCOD = "SELECT SUBSTRING(MAX(id_cliente),3) FROM clientes";
