@@ -3,9 +3,13 @@ package Modelo.Entidades;
 import java.time.LocalTime;
 
 public class Horario {
-    private String id ,dia;
+    private String 
+            id,
+            dia;
     
-    private LocalTime horaInicio, horaFin;
+    private LocalTime 
+            horaInicio,
+            horaFin;
 
     public Horario() {
     }
@@ -58,6 +62,5 @@ public class Horario {
     public String toString() {
         return "Horario{" + "id=" + id + ", dia=" + dia + ", horaInicio=" + horaInicio + ", horaFin=" + horaFin + '}';
     }
-    
     
 }

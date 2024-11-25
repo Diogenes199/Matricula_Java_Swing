@@ -13,5 +13,5 @@ public interface IMaster {
     ITipoComprobante comprobanteI();
     ITipoDocumento documentoI();
     IUsuario usuarioI();
-    
+    IDevolucion devoluvionI();
 }

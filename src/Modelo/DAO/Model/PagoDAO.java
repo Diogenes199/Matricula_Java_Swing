@@ -30,7 +30,8 @@ public class PagoDAO extends BaseDAO implements IPago{
         new TipoComprobante(resultado_data.getString("id_tipo_comprobante")),
         resultado_data.getString("numero_comprobante"),
         new Usuario(resultado_data.getString("id_usuario_registro")),
-        resultado_data.getString("observaciones")
+        resultado_data.getString("observaciones"),
+        resultado_data.getDouble("igv")
     );
 }
 
@@ -61,6 +62,7 @@ public class PagoDAO extends BaseDAO implements IPago{
         prepared.setString(7, pago.getNumeroComprobante());
         prepared.setString(8, pago.getUsuario().getId());
         prepared.setString(9, pago.getObservaciones());
+        prepared.setDouble(10, pago.getIgv());
         prepared.executeUpdate();
     } catch (SQLException ex) {
         System.out.println("ERROR CREATE: " + ex.getMessage());
@@ -78,7 +80,8 @@ public void update(Pago pago) {
         prepared.setString(6, pago.getNumeroComprobante());
         prepared.setString(7, pago.getUsuario().getId());
         prepared.setString(8, pago.getObservaciones());
-        prepared.setString(9, pago.getId());
+        prepared.setDouble(9, pago.getIgv());
+        prepared.setString(10, pago.getId());
         prepared.executeUpdate();
     } catch (SQLException ex) {
         System.out.println("ERROR UPDATE: " + ex.getMessage());

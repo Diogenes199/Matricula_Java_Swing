@@ -20,7 +20,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuario {
                                   inner join roles  as R  on U.id_rol = R.id_rol   """;
     private final String GETONE = " WHERE id_usuario = ?";
 
-    private final String NEWCOD = "SELECT SUBSTRING(MAX(id_usuario),3) FROM usuarios";
+    private final String NEWCOD = "SELECT SUBSTRING(MAX(id_usuario),4) FROM usuarios";
 
     public Usuario Data(ResultSet resultado_data) throws SQLException {
         String id = resultado_data.getString("id_usuario");
@@ -195,7 +195,7 @@ public class UsuarioDAO extends BaseDAO implements IUsuario {
 
     @Override
     public String newCode() {
-        String cod = "U0001";
+        String cod = "USR001";
         PreparedStatement prepare_new_code = null;
         connection = getConnection();
         ResultSet result_data = null;
@@ -204,8 +204,8 @@ public class UsuarioDAO extends BaseDAO implements IUsuario {
             result_data = prepare_new_code.executeQuery();
 
             if (result_data.next()) {
-                DecimalFormat formato_decimal = new DecimalFormat("0000");
-                cod = "U" + formato_decimal.format(Integer.parseInt(result_data.getString(1)) + 1);
+                DecimalFormat formato_decimal = new DecimalFormat("000");
+                cod = "USR" + formato_decimal.format(Integer.parseInt(result_data.getString(1)) + 1);
             }
 
         } catch (SQLException e) {

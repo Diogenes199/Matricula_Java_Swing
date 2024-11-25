@@ -1,12 +1,9 @@
 package Modelo.Entidades;
 
 public class Modalidad {
-    private String id,descripcion;
-
-    public Modalidad(String id, String descripcion) {
-        this.id = id;
-        this.descripcion = descripcion;
-     }
+    private String 
+            id,
+            descripcion;
 
     public Modalidad() {
     }
@@ -15,6 +12,10 @@ public class Modalidad {
         this.id = id;
     }
     
+    public Modalidad(String id, String descripcion) {
+        this.id = id;
+        this.descripcion = descripcion;
+     }
 
     public String getId() {
         return id;
@@ -36,7 +37,5 @@ public class Modalidad {
     public String toString() {
         return "Modalidad{" + "id=" + id + ", descripcion=" + descripcion + '}';
     }
-    
-    
     
 }

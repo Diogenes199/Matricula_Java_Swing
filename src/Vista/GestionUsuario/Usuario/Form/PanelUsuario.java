@@ -148,10 +148,6 @@ public class PanelUsuario extends javax.swing.JPanel {
         }else{
             usuario = null;
         }
-        
-        
-        
-        
     }
 
     

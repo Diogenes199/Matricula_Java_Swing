@@ -1,7 +1,9 @@
 package Modelo.Entidades;
 
 public class TipoComprobante {
-    private String id,descripcion;
+    private String 
+            id,
+            descripcion;
 
     public TipoComprobante() {
     }

@@ -1,29 +1,43 @@
 package Modelo.Entidades;
 
-import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Cliente {
     private String id;
-     private Usuario usuario;
      private TipoDocumento documento;
-     private String numeroDocumento;
-     private String sexo;
-     private Date fechaNacimiento;
-     private String ubigeo;
-     private String pais,departamento, provincia,distrito;
+     private String 
+             numeroDocumento,
+             nombre,
+             paterno,
+             materno,
+             email,
+             celular1,
+             celular2,
+             sexo;                     ;
+     private LocalDate fechaNacimiento;     
+     private String 
+             ubigeo,
+             pais,
+             departamento,
+             provincia,
+             distrito;
+     private Usuario usuario;
+     private LocalDateTime fechaRegistro;
 
     public Cliente() {
     }
-
-      public Cliente(String id) {
-          this.id = id;
-    }
-      
-    public Cliente(String id, Usuario usuario, TipoDocumento documento, String numeroDocumento, String sexo, Date fechaNacimiento, String ubigeo, String pais, String departamento, String provincia, String distrito) {
+    
+    public Cliente(String id, TipoDocumento documento, String numeroDocumento, String nombre, String paterno, String materno, String email, String celular1, String celular2, String sexo, LocalDate fechaNacimiento, String ubigeo, String pais, String departamento, String provincia, String distrito, Usuario usuario) {
         this.id = id;
-        this.usuario = usuario;
         this.documento = documento;
         this.numeroDocumento = numeroDocumento;
+        this.nombre = nombre;
+        this.paterno = paterno;
+        this.materno = materno;
+        this.email = email;
+        this.celular1 = celular1;
+        this.celular2 = celular2;
         this.sexo = sexo;
         this.fechaNacimiento = fechaNacimiento;
         this.ubigeo = ubigeo;
@@ -31,22 +45,40 @@ public class Cliente {
         this.departamento = departamento;
         this.provincia = provincia;
         this.distrito = distrito;
+        this.usuario = usuario;
     }
 
-    public String getId() {
+    public Cliente(String id, TipoDocumento documento, String numeroDocumento, String nombre, String paterno, String materno, String email, String celular1, String celular2, String sexo, LocalDate fechaNacimiento, String ubigeo, String pais, String departamento, String provincia, String distrito, Usuario usuario, LocalDateTime fechaRegistro) {
+        this.id = id;
+        this.documento = documento;
+        this.numeroDocumento = numeroDocumento;
+        this.nombre = nombre;
+        this.paterno = paterno;
+        this.materno = materno;
+        this.email = email;
+        this.celular1 = celular1;
+        this.celular2 = celular2;
+        this.sexo = sexo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.ubigeo = ubigeo;
+        this.pais = pais;
+        this.departamento = departamento;
+        this.provincia = provincia;
+        this.distrito = distrito;
+        this.usuario = usuario;
+        this.fechaRegistro = fechaRegistro;
+    }
+
+    public Cliente(String id) {
+        this.id = id;
+    }
+
+     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
     }
 
     public TipoDocumento getDocumento() {
@@ -65,6 +97,54 @@ public class Cliente {
         this.numeroDocumento = numeroDocumento;
     }
 
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getPaterno() {
+        return paterno;
+    }
+
+    public void setPaterno(String paterno) {
+        this.paterno = paterno;
+    }
+
+    public String getMaterno() {
+        return materno;
+    }
+
+    public void setMaterno(String materno) {
+        this.materno = materno;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getCelular1() {
+        return celular1;
+    }
+
+    public void setCelular1(String celular1) {
+        this.celular1 = celular1;
+    }
+
+    public String getCelular2() {
+        return celular2;
+    }
+
+    public void setCelular2(String celular2) {
+        this.celular2 = celular2;
+    }
+
     public String getSexo() {
         return sexo;
     }
@@ -73,11 +153,11 @@ public class Cliente {
         this.sexo = sexo;
     }
 
-    public Date getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(Date fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -121,10 +201,25 @@ public class Cliente {
         this.distrito = distrito;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public LocalDateTime getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
     @Override
     public String toString() {
-        return "Cliente{" + "id=" + id + ", usuario=" + usuario + ", documento=" + documento + ", numeroDocumento=" + numeroDocumento + ", sexo=" + sexo + ", fechaNacimiento=" + fechaNacimiento + ", ubigeo=" + ubigeo + ", pais=" + pais + ", departamento=" + departamento + ", provincia=" + provincia + ", distrito=" + distrito + '}';
+        return "Cliente{" + "id=" + id + ", documento=" + documento + ", numeroDocumento=" + numeroDocumento + ", nombre=" + nombre + ", paterno=" + paterno + ", materno=" + materno + ", email=" + email + ", celular1=" + celular1 + ", celular2=" + celular2 + ", sexo=" + sexo + ", fechaNacimiento=" + fechaNacimiento + ", ubigeo=" + ubigeo + ", pais=" + pais + ", departamento=" + departamento + ", provincia=" + provincia + ", distrito=" + distrito + ", usuario=" + usuario + ", fechaRegistro=" + fechaRegistro + '}';
     }
-     
-     
+    
 }

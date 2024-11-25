@@ -3,7 +3,18 @@ package Modelo.Entidades;
 
 public class Usuario {
     
- private String id, nombre,paterno,materno,dni,usuario,contra,celular1,celular2,direccion;
+ private String 
+         id, 
+         nombre,
+         paterno,
+         materno,
+         dni,
+         usuario,
+         contra,
+         celular1,
+         celular2,
+         direccion;
+ 
  private Rol rol;
 
     public Usuario() {
@@ -120,7 +131,5 @@ public class Usuario {
     public String toString() {
         return "Usuario{" + "id=" + id + ", nombre=" + nombre + ", paterno=" + paterno + ", materno=" + materno + ", dni=" + dni + ", usuario=" + usuario + ", contra=" + contra + ", celular1=" + celular1 + ", celular2=" + celular2 + ", direccion=" + direccion + ", rol=" + rol + '}';
     }
- 
- 
   
 }

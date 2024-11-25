@@ -10,7 +10,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.sql.Date;
 import java.util.List;
 
 public class ClienteDAO extends BaseDAO implements ICliente {
@@ -19,70 +18,51 @@ public class ClienteDAO extends BaseDAO implements ICliente {
     private final String UPDATE = "UPDATE clientes SET tipo_documento = ?, numero_documento = ?, sexo = ?, fecha_nacimiento = ?, ubigeo = ?, pais = ?, departamento = ?, provincia = ?,distrito = ?";
     private final String DELETE = "DELETE FROM clientes ";
     private final String GETALL = "SELECT \n"
-            + "	U.id_usuario,\n"
-            + "    C.id_cliente,     \n"
-            + "    TD.descripcion, \n"
-            + "    C.numero_documento, \n"
-            + "    C.sexo, \n"
-            + "    C.fecha_nacimiento, \n"
-            + "    C.ubigeo, \n"
-            + "    C.pais, \n"
-            + "    C.departamento, \n"
-            + "    C.provincia, \n"
-            + "    C.distrito, \n"
-            + "    U.nombre, \n"
-            + "    U.apellido_paterno, \n"
-            + "    U.apellido_materno, \n"
-            + "    U.dni, \n"
-            + "    U.usuario, \n"
-            + "    U.celular1, \n"
-            + "    U.celular2, \n"
-            + "    U.direccion, \n"
-            + "    R.nombre_rol\n"
+            + "    id_cliente,     \n"
+            + "    tipo_documento, \n"
+            + "    numero_documento, \n"
+            + "    nombres, \n"
+            + "    apellido_paterno, \n"
+            + "    apellido_materno, \n"
+            + "    email, \n"
+            + "    celular1, \n"
+            + "    celular2, \n"
+            + "    sexo, \n"
+            + "    fecha_nacimiento, \n"
+            + "    ubigeo, \n"
+            + "    pais, \n"
+            + "    departamento, \n"
+            + "    provincia, \n"
+            + "    distrito, \n"
+            + "    id_usuario_registro\n"
             + "FROM \n"
-            + "    clientes C\n"
-            + "INNER JOIN \n"
-            + "    usuarios U ON C.id_usuario = U.id_usuario\n"
-            + "INNER JOIN \n"
-            + "    tipos_documentos TD  ON TD.id_tipo_documento = C.tipo_documento\n"
-            + "INNER JOIN \n"
-            + "	roles R ON U.id_rol = R.id_rol";
+            + "    clientes ";
     
     private final String GETONE = " WHERE id_cliente = ?";
 
     private final String NEWCOD = "SELECT SUBSTRING(MAX(id_cliente),3) FROM clientes";
 
-    public Cliente Data(ResultSet resultado_data) throws SQLException {
+    public Cliente Data(ResultSet result) throws SQLException {
 
-        String id_cliente = resultado_data.getString("id_cliente");
-        String numeroDocumento = resultado_data.getString("numero_documento");
-        String sexo = resultado_data.getString("sexo");
-        Date fechaNacimiento = resultado_data.getDate("fecha_nacimiento");
-        String ubigeo = resultado_data.getString("ubigeo");
-        String pais = resultado_data.getString("pais");
-        String departamento = resultado_data.getString("departamento");
-        String provincia = resultado_data.getString("provincia");
-        String distrito = resultado_data.getString("distrito");
-        String id_user = resultado_data.getString("id_usuario");
-        String nombre = resultado_data.getString("nombre");
-        String apellidoPaterno = resultado_data.getString("apellido_paterno");
-        String apellidoMaterno = resultado_data.getString("apellido_materno");
-        String dni = resultado_data.getString("dni");
-        String username = resultado_data.getString("usuario");
-        String contra = resultado_data.getString("contra");
-        String celularone = resultado_data.getString("celular1");
-        String celulartwo = resultado_data.getString("celular2");
-        String direccion = resultado_data.getString("direccion");
-
-        Rol rol = new Rol();
-        rol.setRol(resultado_data.getString("nombre_rol"));
-
-        Usuario usuario = new Usuario(id_user, nombre, apellidoPaterno, apellidoMaterno, dni, username, contra, celularone, celulartwo, direccion, rol);
-        TipoDocumento tipoDocumento = new TipoDocumento();
-        tipoDocumento.setDescripcion(resultado_data.getString("descripcion"));
-        Cliente cliente = new Cliente(id_cliente, usuario, tipoDocumento, numeroDocumento, sexo, fechaNacimiento, ubigeo, pais, departamento, provincia, distrito);
-
-        return cliente;
+        return new Cliente(
+                result.getString("id_cliente"),
+                new TipoDocumento("tipo_documento"),
+                result.getString("numero_documento"),
+                result.getString("nombres"),
+                result.getString("apellido_paterno"),
+                result.getString("apellido_materno"),
+                result.getString("email"),
+                result.getString("celular1"),
+                result.getString("celular2"),
+                result.getString("sexo"),
+                result.getDate("fecha_nacimiento").toLocalDate(),
+                result.getString("ubigeo"),
+                result.getString("pais"),
+                result.getString("departamento"),
+                result.getString("provincia"),
+                result.getString("distrito"),
+                new Usuario(result.getString("id_usuario_registro"))                
+        );
     }
 
     @Override
@@ -114,7 +94,7 @@ public class ClienteDAO extends BaseDAO implements ICliente {
             prepared.setString(3, cliente.getDocumento().getId());
             prepared.setString(4, cliente.getNumeroDocumento());
             prepared.setString(5, cliente.getSexo());
-            prepared.setDate(6, cliente.getFechaNacimiento());
+            prepared.setDate(6, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
             prepared.setString(7, cliente.getUbigeo());
             prepared.setString(8, cliente.getPais());
             prepared.setString(9, cliente.getPais());
@@ -140,7 +120,7 @@ public class ClienteDAO extends BaseDAO implements ICliente {
             prepared.setString(2, cliente.getDocumento().getId());
             prepared.setString(3, cliente.getNumeroDocumento());
             prepared.setString(4, cliente.getSexo());
-            prepared.setDate(5, cliente.getFechaNacimiento());
+            prepared.setDate(5, java.sql.Date.valueOf(cliente.getFechaNacimiento()));
             prepared.setString(6, cliente.getUbigeo());
             prepared.setString(7, cliente.getPais());
             prepared.setString(8, cliente.getPais());

@@ -12,11 +12,17 @@ public class Pago {
     private String numeroComprobante;
     private Usuario Usuario;
     private String observaciones;
+    private double igv;
 
     public Pago() {
     }
 
-    public Pago(String id, Matricula matricula, LocalDate fechaPago, double monto, String detalle, TipoComprobante comprobante, String numeroComprobante, Usuario Usuario, String observaciones) {
+    public Pago(String id) {
+        this.id = id;
+    }
+
+    
+    public Pago(String id, Matricula matricula, LocalDate fechaPago, double monto, String detalle, TipoComprobante comprobante, String numeroComprobante, Usuario Usuario, String observaciones, double igv) {
         this.id = id;
         this.matricula = matricula;
         this.fechaPago = fechaPago;
@@ -27,7 +33,7 @@ public class Pago {
         this.Usuario = Usuario;
         this.observaciones = observaciones;
     }
-
+  
     public String getId() {
         return id;
     }
@@ -99,6 +105,14 @@ public class Pago {
     public void setObservaciones(String observaciones) {
         this.observaciones = observaciones;
     }
+
+    public double getIgv() {
+        return monto * 0.18;
+    }
+
+//    public void setIgv(double igv) {
+//        this.igv = igv;
+//    }
 
     @Override
     public String toString() {

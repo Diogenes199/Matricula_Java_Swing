@@ -1,32 +1,48 @@
 package Modelo.Entidades;
 
-
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 public class Matricula {
-    private String id ;
+
+    private String id;
     private Cliente cliente;
     private Curso curso;
     private Modalidad modalidad;
     private Horario horario;
-    private LocalDate fechaInicio;
+    private LocalDate fechaInscripcion;
     private double costoTotal;
+    private Usuario usuario;
+    private LocalDateTime fechaRegistro;
 
     public Matricula() {
     }
-    
+
     public Matricula(String id) {
         this.id = id;
     }
-   
-    public Matricula(String id, Cliente cliente, Curso curso, Modalidad modalidad, Horario horario, LocalDate fechaInicio, double costoTotal) {
+
+    public Matricula(String id, Cliente cliente, Curso curso, Modalidad modalidad, Horario horario, LocalDate fechaInscripcion, double costoTotal, Usuario usuario) {
         this.id = id;
         this.cliente = cliente;
         this.curso = curso;
         this.modalidad = modalidad;
         this.horario = horario;
-        this.fechaInicio = fechaInicio;
+        this.fechaInscripcion = fechaInscripcion;
         this.costoTotal = costoTotal;
+        this.usuario = usuario;
+    }
+
+    public Matricula(String id, Cliente cliente, Curso curso, Modalidad modalidad, Horario horario, LocalDate fechaInscripcion, double costoTotal, Usuario usuario, LocalDateTime fechaRegistro) {
+        this.id = id;
+        this.cliente = cliente;
+        this.curso = curso;
+        this.modalidad = modalidad;
+        this.horario = horario;
+        this.fechaInscripcion = fechaInscripcion;
+        this.costoTotal = costoTotal;
+        this.usuario = usuario;
+        this.fechaRegistro = fechaRegistro;
     }
 
     public String getId() {
@@ -69,12 +85,12 @@ public class Matricula {
         this.horario = horario;
     }
 
-    public LocalDate getFechaInicio() {
-        return fechaInicio;
+    public LocalDate getFechaInscripcion() {
+        return fechaInscripcion;
     }
 
-    public void setFechaInicio(LocalDate fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setFechaInscripcion(LocalDate fechaInscripcion) {
+        this.fechaInscripcion = fechaInscripcion;
     }
 
     public double getCostoTotal() {
@@ -85,10 +101,25 @@ public class Matricula {
         this.costoTotal = costoTotal;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public LocalDateTime getFechaRegistro() {
+        return fechaRegistro;
+    }
+
+    public void setFechaRegistro(LocalDateTime fechaRegistro) {
+        this.fechaRegistro = fechaRegistro;
+    }
+
     @Override
     public String toString() {
-        return "Matricula{" + "id=" + id + ", cliente=" + cliente + ", curso=" + curso + ", modalidad=" + modalidad + ", horario=" + horario + ", fechaInicio=" + fechaInicio + ", costoTotal=" + costoTotal + '}';
+        return "Matricula{" + "id=" + id + ", cliente=" + cliente + ", curso=" + curso + ", modalidad=" + modalidad + ", horario=" + horario + ", fechaInscripcion=" + fechaInscripcion + ", costoTotal=" + costoTotal + ", usuario=" + usuario + ", fechaRegistro=" + fechaRegistro + '}';
     }
-    
     
 }

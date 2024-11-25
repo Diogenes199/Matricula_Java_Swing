@@ -1,4 +1,5 @@
 package Vista.Menu;
+import Vista.GestionAcademico.Estudiante.Form.ItemEstudiante;
 import Vista.GestionAcademico.TipoDocumento.Form.ItemTipoDocumento;
 import Vista.GestionCursosyHorarios.Curso.Form.ItemCurso;
 import Vista.GestionCursosyHorarios.Horario.Form.ItemHorario;
@@ -124,6 +125,11 @@ public class MenuForm extends JFrame {
         itemEstudiante.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
         itemEstudiante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Logos/Academico/estudiante.png"))); // NOI18N
         itemEstudiante.setText("Estudiante");
+        itemEstudiante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEstudianteActionPerformed(evt);
+            }
+        });
         menuAcademico.add(itemEstudiante);
 
         itemDocumento.setFont(new java.awt.Font("Times New Roman", 1, 15)); // NOI18N
@@ -257,6 +263,10 @@ public class MenuForm extends JFrame {
     private void itemHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemHorarioActionPerformed
          Viewinstance(new ItemHorario());
     }//GEN-LAST:event_itemHorarioActionPerformed
+
+    private void itemEstudianteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEstudianteActionPerformed
+         Viewinstance(new ItemEstudiante());
+    }//GEN-LAST:event_itemEstudianteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

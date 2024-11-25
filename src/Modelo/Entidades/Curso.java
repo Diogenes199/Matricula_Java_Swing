@@ -1,8 +1,12 @@
 package Modelo.Entidades;
 
 public class Curso {
-    private String id,curso;
-    private double inscripcion,libro;
+    private String 
+            id,
+            curso;
+    private double 
+            inscripcion,
+            libro;
 
     public Curso() {
     }
@@ -55,6 +59,5 @@ public class Curso {
     public String toString() {
         return "Curso{" + "id=" + id + ", curso=" + curso + ", inscripcion=" + inscripcion + ", libro=" + libro + '}';
     }
-    
     
 }

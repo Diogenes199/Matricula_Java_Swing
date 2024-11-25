@@ -2,7 +2,9 @@ package Modelo.Entidades;
 
 
 public class Rol {
-    private String id, rol;
+    private String 
+            id,
+            rol;
 
     public Rol() {
     }

@@ -17,6 +17,7 @@ public class MasterDAO implements IMaster{
     private ITipoComprobante comprobanteI = null;
     private ITipoDocumento documentoI = null;
     private IUsuario usuarioI = null;
+    private IDevolucion devolucionI = null;
 
     public MasterDAO() {
     
@@ -70,5 +71,11 @@ public class MasterDAO implements IMaster{
     @Override
     public IUsuario usuarioI() {
         return usuarioI==null ? usuarioI = new UsuarioDAO() : usuarioI;
+    }
+
+    @Override
+    public IDevolucion devoluvionI() {
+        return devolucionI==null ? devolucionI = new DevolucionDAO() : devolucionI;
+
     }
 }
